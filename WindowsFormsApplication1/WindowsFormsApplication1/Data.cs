@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ProtoShark
 {
@@ -10,5 +11,6 @@ namespace ProtoShark
     {
         void drawData(GUI gui);
         String getName();
+        void insertData(XMLCreator xml, XmlElement parent);
     }
 }

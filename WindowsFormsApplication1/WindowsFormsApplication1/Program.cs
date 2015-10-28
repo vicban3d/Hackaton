@@ -14,11 +14,11 @@ namespace ProtoShark
         [STAThread]
         static void Main()
         {
-  
-
-             Application.EnableVisualStyles();
-             Application.SetCompatibleTextRenderingDefault(false);
-             Application.Run(new GUI());
+            XMLCreator xml = new XMLCreator();
+            xml.parse("C:\\Users\\noaav\\Desktop\\Hackaton\\HTTP.xml");
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new GUI());
         }
     }
 }

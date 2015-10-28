@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ProtoShark
 {
@@ -44,6 +45,11 @@ namespace ProtoShark
             else return null;
             data.AddLast(newField);
             return newField;
+        }
+
+        public void insertData(XMLCreator xml, XmlElement parent)
+        {
+            throw new NotImplementedException();
         }
     }
 }
