@@ -40,7 +40,8 @@ namespace ProtoShark
         {
             Data newBlock;
             if (type.Equals("repeating")) newBlock = new RepeatingBlock(name);
-            if (type.Equals("fixed")) newBlock = new OptionalBlock(name);
+            if (type.Equals("fixed")) newBlock = new FixedBlock(name);
+            if (type.Equals("optional")) newBlock = new OptionalBlock(name);
             return newBlock;
         }
 
