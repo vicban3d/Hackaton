@@ -19,5 +19,7 @@ namespace ProtoShark
             result.Add("type");
             return result;
         }
+
+         
     }
 }
