@@ -16,6 +16,7 @@ namespace ProtoShark
     {
         private static Size nodeSize = new Size(100, 20);
         private static Size nodeLabelSize = new Size(200, 20);
+        private static String PROTOCOLS_FILE_PATH = "\\\\docman\\docman\\ProtoShark";
         
         private static int initialHeight = 50;
         private static int initialLeft = 50;
@@ -37,10 +38,22 @@ namespace ProtoShark
             resetView();
         }
 
+        private void drawData(LinkedList<Data> data)
+        {
+            if (data != null)
+            {
+                structureDepth++;
+                foreach (Data child in data)
+                {
+                    child.drawData(this);
+                }
+            }
+        }
+
         private void fillProtocolList()
         {
             // Should read head XML file and fill in protocol names.
-            DirectoryInfo dir = Directory.CreateDirectory("\\\\docman\\docman\\ProtoShark");
+            DirectoryInfo dir = Directory.CreateDirectory(PROTOCOLS_FILE_PATH);
             foreach (FileInfo file in dir.EnumerateFiles())
             {
                 cb_protocolsList.Items.Add(file.Name.Split('.')[0]);
@@ -57,15 +70,8 @@ namespace ProtoShark
             dataLabel.Size = nodeSize;
             dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
             p_view.Controls.Add(dataLabel);
-            structureIndex++;
-            if (data.getChildren() != null)
-            {
-                structureDepth++;
-                foreach (Data child in data.getChildren())
-                {
-                    child.drawData(this);
-                }
-            }
+            structureIndex++;           
+            drawData(data.getChildren());
         }
 
 
@@ -144,18 +150,12 @@ namespace ProtoShark
             p_view.Controls.Clear();
             if (cb_protocolsList.Text != "")
             {
-                ///Protocol p = ...
-                /// Data protocolData = p.getData();
-                /// drawData(data);
-                structureIndex = 1;
-                structureDepth = 1;                
+                String filepath = PROTOCOLS_FILE_PATH + "\\" + cb_protocolsList.Text + ".xml";
+                Protocol p = Facade.getProtocolFromXML(filepath);
+                link_source.Text = p.getSource();
+                LinkedList<Data> protocolData = p.getData();
+                drawData(protocolData);               
                 l_protocolName.Text = cb_protocolsList.Text;
-               // SingleBlock fb = new SingleBlock("FixedBlock");
-              //  OptionalBlock ob = new OptionalBlock("OptionalBlock");
-              //  RepeatingBlock rb = new RepeatingBlock("RepeatingBlock");
-             //   drawData(fb);
-            //    drawData(ob);
-             //   drawData(rb);
             }
             else
             {
@@ -166,6 +166,8 @@ namespace ProtoShark
         private void resetView()
         {
             p_view.Controls.Clear();
+            structureIndex = 1;
+            structureDepth = 1;
             Label error = new Label();
             error.Text = "Select Protocol";
             error.Size = new Size(200, 20);            
