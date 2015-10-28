@@ -22,7 +22,9 @@ namespace WpfApplication1
     {
         public MainWindow()
         {
-            InitializeComponent();
+            Console.WriteLine("Hello, World!");
+            XMLCreator create = new XMLCreator();
+
         }
     }
 }
