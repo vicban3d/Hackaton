@@ -48,7 +48,12 @@
   <ItemGroup>
     <Compile Include="Block.cs" />
     <Compile Include="Data.cs" />
-    <Compile Include="FixedBlock.cs" />
+    <Compile Include="DelimField.cs" />
+    <Compile Include="DependField.cs" />
+    <Compile Include="Field.cs" />
+    <Compile Include="FixedField.cs" />
+    <Compile Include="MultiField.cs" />
+    <Compile Include="SingleBlock.cs" />
     <Compile Include="GUI.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -6,25 +6,16 @@ using System.Threading.Tasks;
 
 namespace ProtoShark
 {
-    class RepeatingBlock : Block
+    class SingleBlock : Block
     {
-
-        private string repetitions;
-
-        public RepeatingBlock(String name)
+        public SingleBlock(String name)
         {
-            this.name = name;
-            repetitions = "REPETITIONS_DEFAULT";
+           this.name = name;
         }
 
         internal string getName()
         {
             return name;
-        }
-
-        internal string getNumOfRepetitions()
-        {
-            return repetitions;
         }
 
         internal List<Data> getChildren()

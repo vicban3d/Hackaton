@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApplication1
+namespace ProtoShark
 {
     class Protocol
     {
@@ -21,6 +21,15 @@ namespace WindowsFormsApplication1
             this.data = new LinkedList<Data>();
         } 
 
+        public static List<String> getAttributes()
+        {
+            List<String> result = new List<string>();
+            result.Add("name");
+            result.Add("source");
+            result.Add("description");
+            return result;
+        }
+
         public String getName()
         {
             return name;
@@ -36,14 +45,25 @@ namespace WindowsFormsApplication1
             return description;
         }
 
-        public Data createBlock(String name, String type)
+        public Block createBlock(String name, String type)
         {
-            Data newBlock = null;
+            Block newBlock;
             if (type.Equals("repeating")) newBlock = new RepeatingBlock(name);
-            if (type.Equals("fixed")) newBlock = new FixedBlock(name);
-            if (type.Equals("optional")) newBlock = new OptionalBlock(name);
+            else if (type.Equals("single")) newBlock = new SingleBlock(name);
+            else if (type.Equals("optional")) newBlock = new OptionalBlock(name);
+            else return null;
             return newBlock;
         }
 
+        public Field createField(String name, String type, String info)
+        {
+            Field newField;
+            if (type.Equals("fixed")) newField = new FixedField(name, info);
+            else if (type.Equals("delimited")) newField = new DelimField(name, info);
+            else if (type.Equals("dependant")) newField = new DependField(name, info);
+            else if (type.Equals("multi")) newField = new MultiField(name, info);
+            else return null;
+            return newField;
+        }
     }
 }
