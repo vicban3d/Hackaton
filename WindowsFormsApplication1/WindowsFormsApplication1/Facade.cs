@@ -11,8 +11,7 @@ namespace ProtoShark
         public static Protocol getProtocolFromXML(String path)
         {
             XMLParser parser = new XMLParser();
-            return null;
-
+            return parser.parse(path);
         }
     }
 }
