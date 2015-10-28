@@ -8,5 +8,9 @@ namespace ProtoShark
 {
     class FixedBlock : Block
     {
+        public FixedBlock(String name)
+        {
+
+        }
     }
 }
