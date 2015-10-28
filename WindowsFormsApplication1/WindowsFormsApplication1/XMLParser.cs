@@ -11,15 +11,14 @@ namespace ProtoShark
 {
     class XMLParser
     {
-        public void func()
+        public Protocol parse(String path)
         {
 
             // parse protocol attributes
-            String path = "C:\\Users\\noaav\\Desktop\\Hackaton\\HTTP.xml";
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(path);
 
-
+            Protocol protocol = null;
             XmlNodeList protocolNode = xmlDoc.DocumentElement.SelectNodes("/protocol");
 
             // parsing protocol attributes
@@ -45,7 +44,7 @@ namespace ProtoShark
                 }
 
                 //creating new protocol instance
-                Protocol protocol = new Protocol(protoName, protoSource, protoDescription);
+                 protocol = new Protocol(protoName, protoSource, protoDescription);
 
                 //getting all the blo
                 XmlNodeList nodes = xmlDoc.DocumentElement.SelectNodes("/protocol/block|/protocol/field");
@@ -80,12 +79,13 @@ namespace ProtoShark
                 }
 
             }
+            return protocol;
 
         }
 
 
         //adding keys to specfic field
-        public void innerFields(Field field, XmlNodeList keys)
+        private void innerFields(Field field, XmlNodeList keys)
         {
             foreach (XmlNode key in keys)
             {
@@ -96,7 +96,7 @@ namespace ProtoShark
 
 
         //going through the children of the blockNode and creates recursively the right structure
-        public void innerBlocks(Block blockNode, XmlNodeList children)
+        private void innerBlocks(Block blockNode, XmlNodeList children)
         {
             foreach (XmlNode child in children)
             {
@@ -125,7 +125,7 @@ namespace ProtoShark
         }
 
         //parsing attributes of block and returning them in array
-        public String[] getBlockAttr(XmlNode blockNode)
+        private String[] getBlockAttr(XmlNode blockNode)
         {
             String[] attr = new String[3];
             attr[0] = blockNode.Attributes[0].Value;
@@ -136,7 +136,7 @@ namespace ProtoShark
         }
 
         //parsing attributes of field and returning them in array
-        public String[] getFieldAttr(XmlNode fieldNode)
+        private String[] getFieldAttr(XmlNode fieldNode)
         {
             String[] attr = new String[4];
             attr[0] = fieldNode.Attributes[0].Value;
