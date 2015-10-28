@@ -63,13 +63,7 @@ namespace ProtoShark
 
        public void drawData(SingleBlock data)
         {
-            Label dataLabel = new Label();
-            dataLabel.BackColor = Color.White;
-            dataLabel.BorderStyle = BorderStyle.Fixed3D;
-            dataLabel.Text = data.getName();
-            dataLabel.Size = nodeSize;
-            dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
-            p_view.Controls.Add(dataLabel);
+            createLabel(data.getName());
             structureIndex++;           
             drawData(data.getChildren());
         }
@@ -77,13 +71,7 @@ namespace ProtoShark
 
         public void drawData(OptionalBlock data)
         {
-            Label dataLabel = new Label();
-            dataLabel.BackColor = Color.White;
-            dataLabel.BorderStyle = BorderStyle.Fixed3D;
-            dataLabel.Text = data.getName();
-            dataLabel.Size = nodeSize;
-            dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
-            p_view.Controls.Add(dataLabel);
+            createLabel(data.getName());
 
             Label conditionLabel = new Label();                       
             conditionLabel.Text = " -? " + data.getCondition();
@@ -106,13 +94,7 @@ namespace ProtoShark
 
         public void drawData(RepeatingBlock data)
         {
-            Label dataLabel = new Label();
-            dataLabel.BackColor = Color.White;
-            dataLabel.BorderStyle = BorderStyle.Fixed3D;
-            dataLabel.Text = data.getName();
-            dataLabel.Size = nodeSize;
-            dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
-            p_view.Controls.Add(dataLabel);
+            createLabel(data.getName());            
 
             Label conditionLabel = new Label();
             conditionLabel.Text = " -X " + data.getNumOfRepetitions();
@@ -138,11 +120,24 @@ namespace ProtoShark
         }
         public void drawData(FixedField data)
         {
-
+            createLabel(data.getName() + " (" + data.getSize() + ")");
         }
         public void drawData(DependField data)
         {
+            createLabel(data.getName() + " (" + data.getInfo() + ")");
+        }
 
+        private Label createLabel(String content)
+        {
+
+            Label dataLabel = new Label();
+            dataLabel.BackColor = Color.White;
+            dataLabel.BorderStyle = BorderStyle.Fixed3D;
+            dataLabel.Text = content;
+            dataLabel.Size = nodeSize;
+            dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
+            p_view.Controls.Add(dataLabel);
+            return dataLabel;
         }
 
         private void b_show_Click(object sender, EventArgs e)
