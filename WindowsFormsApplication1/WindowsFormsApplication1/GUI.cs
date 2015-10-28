@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProtoShark;
 
-namespace WindowsFormsApplication1
+namespace ProtoShark
 {
     public partial class GUI : Form
     {
