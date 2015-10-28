@@ -13,5 +13,15 @@ namespace ProtoShark
            this.name = name;
            this.data = new LinkedList<Data>();
         }
+
+        internal string getName()
+        {
+            return name;
+        }
+
+        internal List<Data> getChildren()
+        {
+            return null;
+        }
     }
 }
