@@ -44,7 +44,7 @@ namespace WindowsFormsApplication1
         void drawData()
         {
             l_protocolName.Text = cb_protocolsList.Text;
-            Label l = new Label();
+            Label l = new Label();            
             l.BackColor = Color.White;
             l.BorderStyle = BorderStyle.Fixed3D;            
             l.Text = "some field";
