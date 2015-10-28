@@ -32,10 +32,13 @@ namespace ProtoShark
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
             this.p_menu = new System.Windows.Forms.Panel();
+            this.b_create = new System.Windows.Forms.Button();
+            this.b_edit = new System.Windows.Forms.Button();
             this.b_show = new System.Windows.Forms.Button();
             this.l_protocols = new System.Windows.Forms.Label();
             this.cb_protocolsList = new System.Windows.Forms.ComboBox();
             this.p_view = new System.Windows.Forms.Panel();
+            this.b_save = new System.Windows.Forms.Button();
             this.l_notes = new System.Windows.Forms.Label();
             this.link_source = new System.Windows.Forms.LinkLabel();
             this.l_protocolName = new System.Windows.Forms.Label();
@@ -48,13 +51,36 @@ namespace ProtoShark
             // 
             // p_menu
             // 
+            this.p_menu.Controls.Add(this.b_save);
+            this.p_menu.Controls.Add(this.b_create);
+            this.p_menu.Controls.Add(this.b_edit);
             this.p_menu.Controls.Add(this.b_show);
             this.p_menu.Controls.Add(this.l_protocols);
             this.p_menu.Controls.Add(this.cb_protocolsList);
             this.p_menu.Location = new System.Drawing.Point(9, 56);
             this.p_menu.Name = "p_menu";
-            this.p_menu.Size = new System.Drawing.Size(166, 83);
+            this.p_menu.Size = new System.Drawing.Size(166, 188);
             this.p_menu.TabIndex = 0;
+            // 
+            // b_create
+            // 
+            this.b_create.Location = new System.Drawing.Point(64, 118);
+            this.b_create.Name = "b_create";
+            this.b_create.Size = new System.Drawing.Size(98, 30);
+            this.b_create.TabIndex = 4;
+            this.b_create.Text = "Create >>";
+            this.b_create.UseVisualStyleBackColor = true;
+            this.b_create.Click += new System.EventHandler(this.b_create_Click);
+            // 
+            // b_edit
+            // 
+            this.b_edit.Location = new System.Drawing.Point(64, 82);
+            this.b_edit.Name = "b_edit";
+            this.b_edit.Size = new System.Drawing.Size(98, 30);
+            this.b_edit.TabIndex = 3;
+            this.b_edit.Text = "Edit >>";
+            this.b_edit.UseVisualStyleBackColor = true;
+            this.b_edit.Click += new System.EventHandler(this.b_edit_Click);
             // 
             // b_show
             // 
@@ -90,6 +116,16 @@ namespace ProtoShark
             this.p_view.Name = "p_view";
             this.p_view.Size = new System.Drawing.Size(539, 720);
             this.p_view.TabIndex = 1;
+            // 
+            // b_save
+            // 
+            this.b_save.Location = new System.Drawing.Point(65, 154);
+            this.b_save.Name = "b_save";
+            this.b_save.Size = new System.Drawing.Size(98, 30);
+            this.b_save.TabIndex = 0;
+            this.b_save.Text = "<< Save >>";
+            this.b_save.UseVisualStyleBackColor = true;
+            this.b_save.Click += new System.EventHandler(this.b_save_Click);
             // 
             // l_notes
             // 
@@ -187,6 +223,9 @@ namespace ProtoShark
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb_desc;
+        private System.Windows.Forms.Button b_create;
+        private System.Windows.Forms.Button b_edit;
+        private System.Windows.Forms.Button b_save;
     }
 }
 
