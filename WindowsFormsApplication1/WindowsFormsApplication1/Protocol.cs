@@ -46,13 +46,13 @@ namespace ProtoShark
             return newBlock;
         }
 
-        public Field createField(String name, String type, String info)
+        public Field createField(String name, String type, String info, String description)
         {
             Field newField;
-            if (type.Equals("fixed")) newField = new FixedField(name, info);
-            else if (type.Equals("delimited")) newField = new DelimField(name, info);
-            else if (type.Equals("dependant")) newField = new DependField(name, info);
-            else if (type.Equals("multi")) newField = new MultiField(name, info);
+            if (type.Equals("fixed")) newField = new FixedField(name, info, description);
+            else if (type.Equals("delimited")) newField = new DelimField(name, info, description);
+            else if (type.Equals("dependant")) newField = new DependField(name, info, description);
+            else if (type.Equals("multi")) newField = new MultiField(name, info, description);
             else return null;
             return newField;
         }

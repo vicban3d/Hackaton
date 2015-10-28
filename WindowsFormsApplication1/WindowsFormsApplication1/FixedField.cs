@@ -10,10 +10,12 @@ namespace ProtoShark
     {
         private String size;
 
-        public FixedField(String name, String info)
+        public FixedField(String name, String info, String description)
         {
             this.name = name;
             this.size = info;
+            this.description = description;
+
         }
         public override void drawData(GUI gui)
         {

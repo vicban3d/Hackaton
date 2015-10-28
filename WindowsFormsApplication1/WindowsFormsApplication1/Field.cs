@@ -11,6 +11,7 @@ namespace ProtoShark
     abstract class Field : Data
     {
         protected String name;
+        protected String description;
         public abstract void drawData(GUI gui);
         public String getName()
         {
