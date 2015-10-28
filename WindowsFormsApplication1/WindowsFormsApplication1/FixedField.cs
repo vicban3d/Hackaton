@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProtoShark
 {
-    class RepeatingBlock : Block
+    class FixedField : Field
     {
-        public RepeatingBlock(String name)
+        private String size;
+
+        public FixedField(String name, String info)
         {
             this.name = name;
+            this.size = info;
         }
     }
 }

@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProtoShark
 {
-    class RepeatingBlock : Block
+    class MultiField : Field
     {
-        public RepeatingBlock(String name)
+        private String info;
+
+        public MultiField(String name, String info)
         {
             this.name = name;
+            this.info = info;
         }
     }
 }

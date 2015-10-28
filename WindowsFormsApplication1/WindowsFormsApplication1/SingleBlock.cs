@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProtoShark
 {
-    class RepeatingBlock : Block
+    class SingleBlock : Block
     {
-        public RepeatingBlock(String name)
+        public SingleBlock(String name)
         {
-            this.name = name;
+           this.name = name;
         }
     }
 }

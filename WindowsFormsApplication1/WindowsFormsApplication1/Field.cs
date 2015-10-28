@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProtoShark
 {
-    class FixedBlock : Block
-    {
-        public FixedBlock(String name)
-        {
 
-        }
+
+    class Field : Data
+    {
+        protected String name;
     }
 }

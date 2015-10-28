@@ -10,7 +10,7 @@ namespace ProtoShark
     {
         public OptionalBlock(String name)
         {
-
+            this.name = name;
         }
     }
 }

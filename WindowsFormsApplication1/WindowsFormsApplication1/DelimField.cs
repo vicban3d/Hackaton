@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProtoShark
 {
-    class RepeatingBlock : Block
+    class DelimField :Field
     {
-        public RepeatingBlock(String name)
+        private String delim;
+
+        public DelimField(String name, String info)
         {
             this.name = name;
+            this.delim = info;
         }
     }
 }
