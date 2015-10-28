@@ -55,6 +55,7 @@ namespace WindowsFormsApplication1
             structureDepth++;
         }
 
+
         private void b_show_Click(object sender, EventArgs e)
         {
             drawData();
