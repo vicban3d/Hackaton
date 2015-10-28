@@ -9,7 +9,40 @@ namespace ProtoShark
     class Protocol
     {
         private String name;
-        private String sources;
+        private String source;
+        private String description; 
+        private LinkedList<Data> data;
+        
+        public Protocol(String name, String source, String description)
+        {
+            this.name = name;
+            this.source = source;
+            this.description = description;
+            this.data = new LinkedList<Data>();
+        } 
+
+        public String getName()
+        {
+            return name;
+        }
+
+        public String getSource()
+        {
+            return source;
+        }
+
+        public String getDescription()
+        {
+            return description;
+        }
+
+        public Data createBlock(String name, String type)
+        {
+            Data newBlock;
+            if (type.Equals("repeating")) newBlock = new RepeatingBlock(name);
+            if (type.Equals("fixed")) newBlock = new OptionalBlock(name);
+            return newBlock;
+        }
 
     }
 }
