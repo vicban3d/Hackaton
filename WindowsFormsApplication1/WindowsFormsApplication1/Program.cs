@@ -14,6 +14,8 @@ namespace ProtoShark
         [STAThread]
         static void Main()
         {
+            XMLParser xml = new XMLParser();
+            xml.parse();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GUI());

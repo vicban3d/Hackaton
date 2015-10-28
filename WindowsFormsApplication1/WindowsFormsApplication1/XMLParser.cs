@@ -15,7 +15,7 @@ namespace ProtoShark
         {
 
             // parse protocol attributes
-            String path = "C:\\Users\\noaav\\Desktop\\Hackaton\\HTTP.xml";
+            String path = "\\\\docman\\docman\\ProtoShark\\HTTP.xml";
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(path);
 
