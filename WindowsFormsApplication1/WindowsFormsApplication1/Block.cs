@@ -20,5 +20,14 @@ namespace ProtoShark
         {
             return data;
         }
+        
+        public Block addBlock(String name, String type, String info) {
+            return null;
+        }
+
+        public Field addField(String name, String type, String info, String description)
+        {
+            return null;
+        }
     }
 }

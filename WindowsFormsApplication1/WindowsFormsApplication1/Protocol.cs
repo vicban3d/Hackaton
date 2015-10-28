@@ -46,7 +46,7 @@ namespace ProtoShark
             return newBlock;
         }
 
-        public Field createField(String name, String type, String info)
+        public Field createField(String name, String type, String info, String description)
         {
             Field newField;
             if (type.Equals("fixed")) newField = new FixedField(name, info);

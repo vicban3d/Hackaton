@@ -16,5 +16,9 @@ namespace ProtoShark
         {
             return name;
         }
+        public Field addKey(String key, String value)
+        {
+            return null;
+        }
     }
 }
