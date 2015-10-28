@@ -14,7 +14,7 @@ namespace ProtoShark
         public void func()
         {
 
-          // parse protocol attributes
+            // parse protocol attributes
             String path = "C:\\Users\\noaav\\Desktop\\Hackaton\\HTTP.xml";
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(path);
@@ -52,53 +52,53 @@ namespace ProtoShark
 
                 //going over all the nodes and creating their instances
                 foreach (XmlNode node in nodes)
+                {
+                    if (node.Name == "block")
                     {
-                        if (node.Name == "block")
-                        {
-                            String[] attr = getBlockAttr(node);
-                            String name = attr[0];
-                            String type = attr[1];
-                            String info = attr[2];
+                        String[] attr = getBlockAttr(node);
+                        String name = attr[0];
+                        String type = attr[1];
+                        String info = attr[2];
 
-                            Block block = protocol.createBlock(name, type,info);
-                            innerBlocks(block, node.ChildNodes);
-                        }
-                        else if (node.Name == "field")
-                        {
-                            String[] attr = getFieldAttr(node);
-                            String name = attr[0];
-                            String type = attr[1];
-                            String info = attr[2];
-                            String description = attr[3];
+                        Block block = protocol.createBlock(name, type, info);
+                        innerBlocks(block, node.ChildNodes);
+                    }
+                    else if (node.Name == "field")
+                    {
+                        String[] attr = getFieldAttr(node);
+                        String name = attr[0];
+                        String type = attr[1];
+                        String info = attr[2];
+                        String description = attr[3];
 
-                            Field field = protocol.createField(name, type, info, description);
+                        Field field = protocol.createField(name, type, info, description);
                         if (node.ChildNodes != null)
-                            {
-                                innerFields(field, node.ChildNodes);
-                            }
+                        {
+                            innerFields(field, node.ChildNodes);
+                        }
                     }
-                    }
-
                 }
 
             }
 
-        
+        }
+
+
         //adding keys to specfic field
-        public void innerField(Field field, XmlNodeList keys)
+        public void innerFields(Field field, XmlNodeList keys)
         {
-            foreach(XmlNode key in keys)
+            foreach (XmlNode key in keys)
             {
                 field.addKey(key.Attributes[0].Value, key.Value);
             }
-            
+
         }
 
 
         //going through the children of the blockNode and creates recursively the right structure
         public void innerBlocks(Block blockNode, XmlNodeList children)
         {
-            foreach(XmlNode child in children)
+            foreach (XmlNode child in children)
             {
                 if (child.Name == "block")
                 {
@@ -110,9 +110,9 @@ namespace ProtoShark
                     Block block = blockNode.addBlock(name, type, info);
                     innerBlocks(block, child.ChildNodes);
                 }
-                else if(child.Name == "field")
+                else if (child.Name == "field")
                 {
-                    String[] attr= getFieldAttr(child);
+                    String[] attr = getFieldAttr(child);
                     String name = attr[0];
                     String type = attr[1];
                     String info = attr[2];
@@ -121,7 +121,7 @@ namespace ProtoShark
                     innerFields(field, child.ChildNodes);
 
                 }
-            }            
+            }
         }
 
         //parsing attributes of block and returning them in array
@@ -155,6 +155,6 @@ namespace ProtoShark
 
     }
 }
-        
-    
+
+
 
