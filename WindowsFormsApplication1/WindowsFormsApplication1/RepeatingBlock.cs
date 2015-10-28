@@ -11,6 +11,10 @@ namespace ProtoShark
         private String numOfRepetition;
         public RepeatingBlock(String name, String info)
         {
+            if (info == "")
+            {
+                info = "unspecified";
+            }
             this.numOfRepetition = info;
             this.name = name;
             this.data = new LinkedList<Data>();

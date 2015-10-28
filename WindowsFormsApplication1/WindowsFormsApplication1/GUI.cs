@@ -18,8 +18,8 @@ namespace ProtoShark
         private static Size nodeLabelSize = new Size(200, 20);
         private static String PROTOCOLS_FILE_PATH = "\\\\docman\\docman\\ProtoShark";
         
-        private static int initialHeight = 20;
-        private static int initialLeft = 20;
+        private static int initialHeight = 0;
+        private static int initialLeft = 0;
 
 
         private int structureIndex;
@@ -28,21 +28,24 @@ namespace ProtoShark
 
         public GUI()
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             InitializeComponent();
             structureIndex = 1;
             structureDepth = 1;
-            fillProtocolList();
+            fillProtocolList();           
 
             p_view.AutoScroll = true;
             
-            l_desc.BackColor = Color.White;
-            l_desc.BorderStyle = BorderStyle.FixedSingle;
-            l_desc.AutoSize = false;
-            l_desc.Size = new Size(250, 520);
-            l_desc.Location = new Point(730, 55);
+            tb_desc.BackColor = Color.White;
+            tb_desc.BorderStyle = BorderStyle.FixedSingle;
+            tb_desc.AutoSize = false;
+            tb_desc.Size = new Size(520, 720);
+            tb_desc.Location = new Point(730, 55);
+            tb_desc.ScrollBars = ScrollBars.Vertical;
+            tb_desc.ReadOnly = true;
+            tb_desc.WordWrap = true;
 
 
-            resetView();
 
 
 
@@ -109,15 +112,27 @@ namespace ProtoShark
 
         public void drawData(MultiField data)
         {
-     
+            string keys = "";
+            foreach(Key key in data.getKeys())
+            {
+                keys += key.getValue() + "\r\n" + key.getDescription() + "\r\n\r\n";
+            }
+            keys = "\r\n\r\nMay be equal to one of the following values:\r\n" + keys;
+            createLabel(data.getName(), data.getDescription() + keys);
         }
+
+        internal void drawData(DelimField data)
+        {
+            createLabel(data.getName() + " : " + data.getDelim(), data.getDescription() + "\r\n\r\nThe value of this field ends with \'" + data.getDelim() + "\'.\r\n");
+        }
+
         public void drawData(FixedField data)
         {
-            createLabel(data.getName() + " (" + data.getSize() + ")", data.getDescription());
+            createLabel(data.getName() + " (" + data.getSize() + ")", data.getDescription() + "\r\n\r\nThe size of this field is " + data.getSize() + " bytes.\r\n");
         }
         public void drawData(DependField data)
         {
-            createLabel(data.getName() + " (" + data.getInfo() + ")", data.getDescription());
+            createLabel(data.getName() + " (" + data.getInfo() + ")", data.getDescription() + "\r\n\r\nThis field may or may not appear depending on " + data.getInfo() + " field.\r\n");
         }
 
         private void createLabel(String content, string description)
@@ -137,7 +152,7 @@ namespace ProtoShark
 
         private void clickHandler(string description)
         {
-            l_desc.Text = description;
+            tb_desc.Text = description;
         }
 
         private void b_show_Click(object sender, EventArgs e)
@@ -145,26 +160,15 @@ namespace ProtoShark
             p_view.Controls.Clear();
             structureIndex = 1;
             structureDepth = 1;
-            l_desc.Text = "";
+            tb_desc.Text = "";
             if (cb_protocolsList.Items.Contains(cb_protocolsList.Text))
             {
                 String filepath = PROTOCOLS_FILE_PATH + "\\" + cb_protocolsList.Text + ".xml";
-                // Protocol p = Facade.getProtocolFromXML(filepath);
-                // link_source.Text = p.getSource();
-                // LinkedList<Data> protocolData = p.getData();
-                // drawData(protocolData);               
+                 Protocol p = Facade.getProtocolFromXML(filepath);
+                 link_source.Text = p.getSource();
+                 LinkedList<Data> protocolData = p.getData();
+                 drawData(protocolData);               
                  l_protocolName.Text = cb_protocolsList.Text;
-
-                FixedField ff = new FixedField("FixedField", "4", "This field is fixed with size 4 bytes.");
-                DependField df = new DependField("DependField", "FixedField == 0", "This field only exists if FiexedField is 0");
-                SingleBlock sb = new SingleBlock("Fields", "BlaBla");
-                RepeatingBlock rb = new RepeatingBlock("RepeatingBlock", "10");
-                sb.addField("FixedField", "fixed", "4", "This field is fixed with size 4 bytes.");
-                sb.addField("DependField", "dependant", "FixedField == 0", "This field only exists if FiexedField is 0");                
-                rb.addField("FixedField", "fixed", "4", "This field is fixed with size 4 bytes.");
-                rb.addField("DependField", "dependant", "FixedField == 0", "This field only exists if FiexedField is 0");
-                drawData(sb);
-                drawData(rb);
             }
             else
             {
@@ -177,7 +181,7 @@ namespace ProtoShark
             p_view.Controls.Clear();
             structureIndex = 1;
             structureDepth = 1;
-            l_desc.Text = "";
+            tb_desc.Text = "";
             Label error = new Label();
             error.Text = "Select Protocol";
             error.Size = new Size(200, 20);            

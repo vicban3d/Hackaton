@@ -22,11 +22,6 @@ namespace ProtoShark
             base.Dispose(disposing);
         }
 
-        internal void drawData(DelimField delimField)
-        {
-            throw new NotImplementedException();
-        }
-
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -46,7 +41,7 @@ namespace ProtoShark
             this.l_protocolName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.l_desc = new System.Windows.Forms.Label();
+            this.tb_desc = new System.Windows.Forms.TextBox();
             this.p_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -93,13 +88,13 @@ namespace ProtoShark
             this.p_view.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.p_view.Location = new System.Drawing.Point(184, 54);
             this.p_view.Name = "p_view";
-            this.p_view.Size = new System.Drawing.Size(539, 522);
+            this.p_view.Size = new System.Drawing.Size(539, 720);
             this.p_view.TabIndex = 1;
             // 
             // l_notes
             // 
             this.l_notes.AutoSize = true;
-            this.l_notes.Location = new System.Drawing.Point(726, 39);
+            this.l_notes.Location = new System.Drawing.Point(730, 38);
             this.l_notes.Name = "l_notes";
             this.l_notes.Size = new System.Drawing.Size(38, 13);
             this.l_notes.TabIndex = 3;
@@ -128,7 +123,7 @@ namespace ProtoShark
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(883, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(1141, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(102, 49);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -141,26 +136,26 @@ namespace ProtoShark
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(782, 5);
+            this.label1.Location = new System.Drawing.Point(1040, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 20);
             this.label1.TabIndex = 5;
             this.label1.Text = "ProtoShark";
             // 
-            // l_desc
+            // tb_desc
             // 
-            this.l_desc.AutoSize = true;
-            this.l_desc.Location = new System.Drawing.Point(730, 54);
-            this.l_desc.Name = "l_desc";
-            this.l_desc.Size = new System.Drawing.Size(0, 13);
-            this.l_desc.TabIndex = 6;
+            this.tb_desc.Location = new System.Drawing.Point(730, 54);
+            this.tb_desc.Multiline = true;
+            this.tb_desc.Name = "tb_desc";
+            this.tb_desc.Size = new System.Drawing.Size(513, 720);
+            this.tb_desc.TabIndex = 6;
             // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(997, 588);
-            this.Controls.Add(this.l_desc);
+            this.ClientSize = new System.Drawing.Size(1255, 786);
+            this.Controls.Add(this.tb_desc);
             this.Controls.Add(this.link_source);
             this.Controls.Add(this.l_protocolName);
             this.Controls.Add(this.label1);
@@ -169,6 +164,7 @@ namespace ProtoShark
             this.Controls.Add(this.p_view);
             this.Controls.Add(this.p_menu);
             this.Name = "GUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProtoShark";
             this.p_menu.ResumeLayout(false);
             this.p_menu.PerformLayout();
@@ -190,7 +186,7 @@ namespace ProtoShark
         private System.Windows.Forms.Label l_notes;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label l_desc;
+        private System.Windows.Forms.TextBox tb_desc;
     }
 }
 
