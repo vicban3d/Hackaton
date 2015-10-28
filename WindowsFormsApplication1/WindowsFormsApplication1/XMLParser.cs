@@ -11,7 +11,7 @@ namespace ProtoShark
 {
     class XMLParser
     {
-        public void func()
+        public void parse()
         {
 
             // parse protocol attributes
