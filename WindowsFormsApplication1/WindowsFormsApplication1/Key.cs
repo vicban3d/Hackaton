@@ -15,5 +15,16 @@ namespace ProtoShark
             this.description = description;
             this.value = value;
         }
+
+        public String getDescription()
+        {
+            return description;
+        }
+
+        public String getValue()
+        {
+            return value;
+        }
+
     }
 }

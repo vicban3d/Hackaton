@@ -18,5 +18,10 @@ namespace ProtoShark
             return name;
         }
 
+        public String getDescription()
+        {
+            return description;
+        }
+
     }
 }

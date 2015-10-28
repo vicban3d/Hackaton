@@ -28,5 +28,15 @@ namespace ProtoShark
         {
             keys.Add(new Key(name, value));
         }
+
+        public List<Key> getKeys()
+        {
+            return keys;
+        }
+
+        public String getInfo()
+        {
+            return info;
+        }
     }
 }
