@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProtoShark;
+using System.IO;
 
 namespace ProtoShark
 {
@@ -39,11 +40,11 @@ namespace ProtoShark
         private void fillProtocolList()
         {
             // Should read head XML file and fill in protocol names.
-            cb_protocolsList.Items.Add("HTTP");
-            cb_protocolsList.Items.Add("SMTP");
-            cb_protocolsList.Items.Add("FTP");
-            cb_protocolsList.Items.Add("SWF");
-            cb_protocolsList.Sorted = true;
+            DirectoryInfo dir = Directory.CreateDirectory("\\\\docman\\docman\\ProtoShark");
+            foreach (FileInfo file in dir.EnumerateFiles())
+            {
+                cb_protocolsList.Items.Add(file.Name.Split('.')[0]);
+            }
         }
 
 
