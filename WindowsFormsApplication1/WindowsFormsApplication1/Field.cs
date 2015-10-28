@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace ProtoShark
 {
-    class FixedBlock : Block
-    {
-        public FixedBlock(String name)
-        {
 
+
+    abstract class Field : Data
+    {
+        protected String name;
+        public abstract void drawData(GUI gui);
+        public String getName()
+        {
+            return name;
         }
     }
 }

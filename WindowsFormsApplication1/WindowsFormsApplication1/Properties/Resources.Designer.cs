@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProtoShark.Properties {
+namespace WindowsFormsApplication1.Properties {
     using System;
     
     

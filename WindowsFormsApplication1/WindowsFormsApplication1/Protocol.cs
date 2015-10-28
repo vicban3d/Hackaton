@@ -36,14 +36,30 @@ namespace ProtoShark
             return description;
         }
 
-        public Data createBlock(String name, String type)
+        public Block createBlock(String name, String type, String info)
         {
-            Data newBlock;
-            if (type.Equals("repeating")) newBlock = new RepeatingBlock(name);
-            if (type.Equals("fixed")) newBlock = new FixedBlock(name);
-            if (type.Equals("optional")) newBlock = new OptionalBlock(name);
+            Block newBlock;
+            if (type.Equals("repeating")) newBlock = new RepeatingBlock(name, info);
+            else if (type.Equals("single")) newBlock = new SingleBlock(name, info);
+            else if (type.Equals("optional")) newBlock = new OptionalBlock(name, info);
+            else return null;
             return newBlock;
         }
 
+        public Field createField(String name, String type, String info)
+        {
+            Field newField;
+            if (type.Equals("fixed")) newField = new FixedField(name, info);
+            else if (type.Equals("delimited")) newField = new DelimField(name, info);
+            else if (type.Equals("dependant")) newField = new DependField(name, info);
+            else if (type.Equals("multi")) newField = new MultiField(name, info);
+            else return null;
+            return newField;
+        }
+
+        public LinkedList<Data> getData()
+        {
+            return data;
+        }
     }
 }

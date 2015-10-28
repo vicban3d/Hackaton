@@ -6,25 +6,21 @@ using System.Threading.Tasks;
 
 namespace ProtoShark
 {
-    class OptionalBlock : Block
+    class MultiField : Field
     {
-        private String condition;
+        private String info;
+        protected List<Key> keys;
 
-        public OptionalBlock(String name, String info)
+        public MultiField(String name, String info)
         {
             this.name = name;
-            this.condition = info;
-            this.data = new LinkedList<Data>();
+            this.info = info;
+            this.keys = new List<Key>();
         }
 
         public override void drawData(GUI gui)
         {
             gui.drawData(this);
-        }
-
-        public String getCondition()
-        {
-            return condition;
         }
     }
 }

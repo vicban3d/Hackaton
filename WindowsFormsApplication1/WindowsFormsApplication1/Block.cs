@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace ProtoShark
 {
-    class Block : Data
+    abstract class Block : Data
     {
+        protected String name;
+        protected LinkedList<Data> data;
+
+        public abstract void drawData(GUI gui);
+        public String getName()
+        {
+            return name;
+        }
+        public LinkedList<Data> getChildren()
+        {
+            return data;
+        }
     }
 }

@@ -6,25 +6,18 @@ using System.Threading.Tasks;
 
 namespace ProtoShark
 {
-    class OptionalBlock : Block
+    class FixedField : Field
     {
-        private String condition;
+        private String size;
 
-        public OptionalBlock(String name, String info)
+        public FixedField(String name, String info)
         {
             this.name = name;
-            this.condition = info;
-            this.data = new LinkedList<Data>();
+            this.size = info;
         }
-
         public override void drawData(GUI gui)
         {
             gui.drawData(this);
-        }
-
-        public String getCondition()
-        {
-            return condition;
         }
     }
 }

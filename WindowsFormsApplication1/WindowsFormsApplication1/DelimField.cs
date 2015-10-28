@@ -6,25 +6,19 @@ using System.Threading.Tasks;
 
 namespace ProtoShark
 {
-    class OptionalBlock : Block
+    class DelimField :Field
     {
-        private String condition;
+        private String delim;
 
-        public OptionalBlock(String name, String info)
+        public DelimField(String name, String info)
         {
             this.name = name;
-            this.condition = info;
-            this.data = new LinkedList<Data>();
+            this.delim = info;
         }
 
         public override void drawData(GUI gui)
         {
             gui.drawData(this);
-        }
-
-        public String getCondition()
-        {
-            return condition;
         }
     }
 }
