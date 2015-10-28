@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApplication1
+﻿using System;
+
+namespace ProtoShark
 {
     partial class GUI
     {
@@ -18,6 +20,11 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        internal void drawData(DelimField delimField)
+        {
+            throw new NotImplementedException();
         }
 
         #region Windows Form Designer generated code

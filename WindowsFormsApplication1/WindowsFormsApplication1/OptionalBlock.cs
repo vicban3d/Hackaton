@@ -8,24 +8,23 @@ namespace ProtoShark
 {
     class OptionalBlock : Block
     {
-        public OptionalBlock(String name)
+        private String condition;
+
+        public OptionalBlock(String name, String info)
         {
             this.name = name;
+            this.condition = info;
+            this.data = new LinkedList<Data>();
         }
 
-        internal IEnumerable<Data> getChildren()
+        public override void drawData(GUI gui)
         {
-            return null;
+            gui.drawData(this);
         }
 
-        internal string getCondition()
+        public String getCondition()
         {
-            return "CONDITION";
-        }
-
-        internal string getName()
-        {
-            return name;
+            return condition;
         }
     }
 }

@@ -6,20 +6,28 @@ using System.Threading.Tasks;
 
 namespace ProtoShark
 {
-    class Block : Data
+    abstract class Block : Data
     {
         protected String name;
-        protected String type;
         protected LinkedList<Data> data;
 
-        public static List<String> getAttributes()
+        public abstract void drawData(GUI gui);
+        public String getName()
         {
-            List<String> result = new List<string>();
-            result.Add("name");
-            result.Add("type");
-            return result;
+            return name;
+        }
+        public LinkedList<Data> getChildren()
+        {
+            return data;
+        }
+        
+        public Block addBlock(String name, String type, String info) {
+            return null;
         }
 
-         
+        public Field addField(String name, String type, String info, String description)
+        {
+            return null;
+        }
     }
 }
