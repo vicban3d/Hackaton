@@ -24,9 +24,24 @@ namespace ProtoShark
             gui.drawData(this);
         }
 
+        public override string getInfo()
+        {
+            return getNumOfRepetitions();
+        }
+
+        public override string getInfoName()
+        {
+            return "numOfRepetition";
+        }
+
         public String getNumOfRepetitions()
         {
             return numOfRepetition;
+        }
+
+        public override string getType()
+        {
+           return "repeating";
         }
     }
 }

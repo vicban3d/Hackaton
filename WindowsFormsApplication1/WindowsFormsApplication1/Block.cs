@@ -12,6 +12,9 @@ namespace ProtoShark
         protected LinkedList<Data> data;
 
         public abstract void drawData(GUI gui);
+        public abstract String getType();
+        public abstract String getInfo();
+        public abstract String getInfoName();
         public String getName()
         {
             return name;

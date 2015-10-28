@@ -22,6 +22,10 @@ namespace ProtoShark
         {
             return description;
         }
+        public abstract String getType();
+        public abstract String getInfo();
+        public abstract String getInfoName();
+        abstract public List<Key> getKeys();
 
     }
 }
