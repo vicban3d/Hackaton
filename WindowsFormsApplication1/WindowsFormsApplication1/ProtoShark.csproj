@@ -76,7 +76,9 @@
     <EmbeddedResource Include="GUI.resx">
       <DependentUpon>GUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\ProtoShark.GUI.resources" />
     <EmbeddedResource Include="obj\Debug\ProtoShark.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\Release\ProtoShark.GUI.resources" />
     <EmbeddedResource Include="obj\Release\ProtoShark.Properties.Resources.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -95,9 +97,11 @@
     <None Include="bin\Release\ProtoShark.exe.config" />
     <None Include="bin\Release\ProtoShark.vshost.exe.config" />
     <None Include="bin\Release\ProtoShark.vshost.exe.manifest" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Debug\ProtoShark.csproj.GenerateResource.Cache" />
     <None Include="obj\Debug\ProtoShark.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Release\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Release\ProtoShark.csproj.GenerateResource.Cache" />
     <None Include="obj\Release\ProtoShark.csprojResolveAssemblyReference.cache" />

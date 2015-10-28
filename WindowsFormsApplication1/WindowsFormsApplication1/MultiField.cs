@@ -23,5 +23,10 @@ namespace ProtoShark
         {
             gui.drawData(this);
         }
+        
+        public void addKey(String name, String value)
+        {
+            keys.Add(new Key(name, value));
+        }
     }
 }

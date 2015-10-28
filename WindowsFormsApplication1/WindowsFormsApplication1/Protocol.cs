@@ -43,6 +43,7 @@ namespace ProtoShark
             else if (type.Equals("single")) newBlock = new SingleBlock(name, info);
             else if (type.Equals("optional")) newBlock = new OptionalBlock(name, info);
             else return null;
+            data.AddLast(newBlock);
             return newBlock;
         }
 
@@ -54,6 +55,7 @@ namespace ProtoShark
             else if (type.Equals("dependant")) newField = new DependField(name, info, description);
             else if (type.Equals("multi")) newField = new MultiField(name, info, description);
             else return null;
+            data.AddLast(newField);
             return newField;
         }
 
