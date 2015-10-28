@@ -8,12 +8,23 @@ namespace ProtoShark
 {
     class OptionalBlock : Block
     {
-        public OptionalBlock(String name)
+        private String condition;
+
+        public OptionalBlock(String name, String info)
         {
             this.name = name;
+            this.condition = info;
             this.data = new LinkedList<Data>();
         }
 
-        public draw
+        public override void drawData(GUI gui)
+        {
+            gui.drawData(this);
+        }
+
+        public String getCondition()
+        {
+            return condition;
+        }
     }
 }

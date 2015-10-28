@@ -36,12 +36,12 @@ namespace ProtoShark
             return description;
         }
 
-        public Block createBlock(String name, String type)
+        public Block createBlock(String name, String type, String info)
         {
             Block newBlock;
-            if (type.Equals("repeating")) newBlock = new RepeatingBlock(name);
-            else if (type.Equals("single")) newBlock = new SingleBlock(name);
-            else if (type.Equals("optional")) newBlock = new OptionalBlock(name);
+            if (type.Equals("repeating")) newBlock = new RepeatingBlock(name, info);
+            else if (type.Equals("single")) newBlock = new SingleBlock(name, info);
+            else if (type.Equals("optional")) newBlock = new OptionalBlock(name, info);
             else return null;
             return newBlock;
         }

@@ -15,5 +15,9 @@ namespace ProtoShark
             this.name = name;
             this.size = info;
         }
+        public override void drawData(GUI gui)
+        {
+            gui.drawData(this);
+        }
     }
 }

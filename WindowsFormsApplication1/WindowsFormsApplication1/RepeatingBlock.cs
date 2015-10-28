@@ -8,10 +8,21 @@ namespace ProtoShark
 {
     class RepeatingBlock : Block
     {
-        public RepeatingBlock(String name)
+        private String numOfRepetition;
+        public RepeatingBlock(String name, String info)
         {
+            this.numOfRepetition = info;
             this.name = name;
             this.data = new LinkedList<Data>();
+        }
+        public override void drawData(GUI gui)
+        {
+            gui.drawData(this);
+        }
+
+        public String getNumOfRepetitions()
+        {
+            return numOfRepetition;
         }
     }
 }

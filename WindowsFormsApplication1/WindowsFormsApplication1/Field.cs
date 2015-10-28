@@ -8,9 +8,13 @@ namespace ProtoShark
 {
 
 
-    class Field : Data
+    abstract class Field : Data
     {
         protected String name;
-
+        public abstract void drawData(GUI gui);
+        public String getName()
+        {
+            return name;
+        }
     }
 }

@@ -17,5 +17,10 @@ namespace ProtoShark
             this.info = info;
             this.keys = new List<Key>();
         }
+
+        public override void drawData(GUI gui)
+        {
+            gui.drawData(this);
+        }
     }
 }

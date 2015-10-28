@@ -1,5 +1,4 @@
-﻿using WindowsFormsApplication1;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,9 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProtoShark;
 
-namespace WindowsFormsApplication1
+namespace ProtoShark
 {
-    public partial class GUI : Form
+    partial class GUI : Form
     {
         private static Size nodeSize = new Size(100, 20);
         private static Size nodeLabelSize = new Size(200, 20);
@@ -47,11 +46,8 @@ namespace WindowsFormsApplication1
             cb_protocolsList.Sorted = true;
         }
 
-        void drawData(Data data)
-        {
-        }
 
-        void drawData(SingleBlock data)
+       public void drawData(SingleBlock data)
         {
             Label dataLabel = new Label();
             dataLabel.BackColor = Color.White;
@@ -66,13 +62,13 @@ namespace WindowsFormsApplication1
                 structureDepth++;
                 foreach (Data child in data.getChildren())
                 {
-                    drawData(child);
+                    child.drawData(this);
                 }
             }
         }
-   
 
-        void drawData(OptionalBlock data)
+
+        public void drawData(OptionalBlock data)
         {
             Label dataLabel = new Label();
             dataLabel.BackColor = Color.White;
@@ -95,13 +91,13 @@ namespace WindowsFormsApplication1
                 structureDepth++;
                 foreach (Data child in data.getChildren())
                 {
-                    drawData(child);
+                    child.drawData(this);
                 }
             }
         }
 
 
-        void drawData(RepeatingBlock data)
+        public void drawData(RepeatingBlock data)
         {
             Label dataLabel = new Label();
             dataLabel.BackColor = Color.White;
@@ -124,11 +120,23 @@ namespace WindowsFormsApplication1
                 structureDepth++;
                 foreach (Data child in data.getChildren())
                 {
-                    drawData(child);
+                    child.drawData(this);
                 }
             }
         }
 
+        public void drawData(MultiField data)
+        {
+     
+        }
+        public void drawData(FixedField data)
+        {
+
+        }
+        public void drawData(DependField data)
+        {
+
+        }
 
         private void b_show_Click(object sender, EventArgs e)
         {
@@ -141,12 +149,12 @@ namespace WindowsFormsApplication1
                 structureIndex = 1;
                 structureDepth = 1;                
                 l_protocolName.Text = cb_protocolsList.Text;
-                SingleBlock fb = new SingleBlock("FixedBlock");
-                OptionalBlock ob = new OptionalBlock("OptionalBlock");
-                RepeatingBlock rb = new RepeatingBlock("RepeatingBlock");
-                drawData(fb);
-                drawData(ob);
-                drawData(rb);
+               // SingleBlock fb = new SingleBlock("FixedBlock");
+              //  OptionalBlock ob = new OptionalBlock("OptionalBlock");
+              //  RepeatingBlock rb = new RepeatingBlock("RepeatingBlock");
+             //   drawData(fb);
+            //    drawData(ob);
+             //   drawData(rb);
             }
             else
             {

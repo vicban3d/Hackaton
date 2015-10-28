@@ -9,5 +9,6 @@ namespace ProtoShark
     interface Data
     {
         void drawData(GUI gui);
+        String getName();
     }
 }

@@ -8,20 +8,17 @@ namespace ProtoShark
 {
     class SingleBlock : Block
     {
-        public SingleBlock(String name)
+        private String info;
+        public SingleBlock(String name, String info)
         {
            this.name = name;
+            this.info = info;
            this.data = new LinkedList<Data>();
         }
 
-        internal string getName()
+        public override void drawData(GUI gui)
         {
-            return name;
-        }
-
-        internal List<Data> getChildren()
-        {
-            return null;
+            gui.drawData(this);
         }
     }
 }
