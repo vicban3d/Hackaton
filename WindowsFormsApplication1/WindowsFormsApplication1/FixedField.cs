@@ -22,6 +22,9 @@ namespace ProtoShark
             gui.drawData(this);
         }
 
-   
+        public String getSize()
+        {
+            return size;
+        }
     }
 }
