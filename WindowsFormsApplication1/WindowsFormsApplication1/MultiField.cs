@@ -29,14 +29,24 @@ namespace ProtoShark
             keys.Add(new Key(name, value));
         }
 
-        public List<Key> getKeys()
+        public override List<Key> getKeys()
         {
             return keys;
         }
 
-        public String getInfo()
+        public override string getType()
+        {
+            return "multi";
+        }
+
+        public override string getInfo()
         {
             return info;
+        }
+
+        public override string getInfoName()
+        {
+            return "info";
         }
     }
 }
