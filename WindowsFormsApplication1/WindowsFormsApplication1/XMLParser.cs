@@ -89,7 +89,7 @@ namespace ProtoShark
         {
             foreach (XmlNode key in keys)
             {
-                field.addKey(key.Attributes[0].Value, key.Value);
+                ((MultiField)field).addKey(key.Attributes[0].Value, key.Value);
             }
 
         }

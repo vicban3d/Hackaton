@@ -10,10 +10,11 @@ namespace ProtoShark
     {
         private String delim;
 
-        public DelimField(String name, String info)
+        public DelimField(String name, String info, String description)
         {
             this.name = name;
             this.delim = info;
+            this.description = description;
         }
 
         public override void drawData(GUI gui)

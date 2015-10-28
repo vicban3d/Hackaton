@@ -10,10 +10,12 @@ namespace ProtoShark
     {
         private String info;
 
-        public DependField(String name, String info)
+        public DependField(String name, String info, String description)
         {
             this.name = name;
             this.info = info;
+            this.description = description;
+
         }
         public override void drawData(GUI gui)
         {
