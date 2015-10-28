@@ -21,5 +21,10 @@ namespace ProtoShark
         {
             gui.drawData(this);
         }
+
+        public String getInfo()
+        {
+            return info;
+        }
     }
 }
