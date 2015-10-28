@@ -151,11 +151,11 @@ namespace ProtoShark
             if (cb_protocolsList.Text != "")
             {
                 String filepath = PROTOCOLS_FILE_PATH + "\\" + cb_protocolsList.Text + ".xml";
-                Protocol p = Facade.getProtocolFromXML(filepath);
-                link_source.Text = p.getSource();
-                LinkedList<Data> protocolData = p.getData();
-                drawData(protocolData);               
-                l_protocolName.Text = cb_protocolsList.Text;
+               // Protocol p = Facade.getProtocolFromXML(filepath);
+               // link_source.Text = p.getSource();
+               // LinkedList<Data> protocolData = p.getData();
+               // drawData(protocolData);               
+               // l_protocolName.Text = cb_protocolsList.Text;
             }
             else
             {
