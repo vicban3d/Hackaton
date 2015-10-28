@@ -35,6 +35,8 @@
             this.p_view = new System.Windows.Forms.Panel();
             this.link_source = new System.Windows.Forms.LinkLabel();
             this.l_protocolName = new System.Windows.Forms.Label();
+            this.p_properties = new System.Windows.Forms.Panel();
+            this.l_notes = new System.Windows.Forms.Label();
             this.p_menu.SuspendLayout();
             this.p_view.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +80,9 @@
             // 
             // p_view
             // 
+            this.p_view.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.p_view.Controls.Add(this.l_notes);
+            this.p_view.Controls.Add(this.p_properties);
             this.p_view.Controls.Add(this.link_source);
             this.p_view.Controls.Add(this.l_protocolName);
             this.p_view.Location = new System.Drawing.Point(184, 12);
@@ -105,6 +110,24 @@
             this.l_protocolName.TabIndex = 0;
             this.l_protocolName.Text = "Protocol Name";
             // 
+            // p_properties
+            // 
+            this.p_properties.BackColor = System.Drawing.Color.White;
+            this.p_properties.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.p_properties.Location = new System.Drawing.Point(540, 18);
+            this.p_properties.Name = "p_properties";
+            this.p_properties.Size = new System.Drawing.Size(256, 541);
+            this.p_properties.TabIndex = 2;
+            // 
+            // l_notes
+            // 
+            this.l_notes.AutoSize = true;
+            this.l_notes.Location = new System.Drawing.Point(537, 3);
+            this.l_notes.Name = "l_notes";
+            this.l_notes.Size = new System.Drawing.Size(38, 13);
+            this.l_notes.TabIndex = 3;
+            this.l_notes.Text = "Notes:";
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -131,6 +154,8 @@
         private System.Windows.Forms.Panel p_view;
         private System.Windows.Forms.LinkLabel link_source;
         private System.Windows.Forms.Label l_protocolName;
+        private System.Windows.Forms.Panel p_properties;
+        private System.Windows.Forms.Label l_notes;
     }
 }
 
