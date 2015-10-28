@@ -42,11 +42,11 @@ namespace ProtoShark
             this.cb_protocolsList = new System.Windows.Forms.ComboBox();
             this.p_view = new System.Windows.Forms.Panel();
             this.l_notes = new System.Windows.Forms.Label();
-            this.p_properties = new System.Windows.Forms.Panel();
             this.link_source = new System.Windows.Forms.LinkLabel();
             this.l_protocolName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.l_desc = new System.Windows.Forms.Label();
             this.p_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -105,15 +105,6 @@ namespace ProtoShark
             this.l_notes.TabIndex = 3;
             this.l_notes.Text = "Notes:";
             // 
-            // p_properties
-            // 
-            this.p_properties.BackColor = System.Drawing.Color.White;
-            this.p_properties.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.p_properties.Location = new System.Drawing.Point(729, 54);
-            this.p_properties.Name = "p_properties";
-            this.p_properties.Size = new System.Drawing.Size(256, 522);
-            this.p_properties.TabIndex = 2;
-            // 
             // link_source
             // 
             this.link_source.AutoSize = true;
@@ -156,18 +147,26 @@ namespace ProtoShark
             this.label1.TabIndex = 5;
             this.label1.Text = "ProtoShark";
             // 
+            // l_desc
+            // 
+            this.l_desc.AutoSize = true;
+            this.l_desc.Location = new System.Drawing.Point(730, 54);
+            this.l_desc.Name = "l_desc";
+            this.l_desc.Size = new System.Drawing.Size(0, 13);
+            this.l_desc.TabIndex = 6;
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(997, 588);
+            this.Controls.Add(this.l_desc);
             this.Controls.Add(this.link_source);
             this.Controls.Add(this.l_protocolName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.l_notes);
             this.Controls.Add(this.p_view);
-            this.Controls.Add(this.p_properties);
             this.Controls.Add(this.p_menu);
             this.Name = "GUI";
             this.Text = "ProtoShark";
@@ -188,10 +187,10 @@ namespace ProtoShark
         private System.Windows.Forms.Panel p_view;
         private System.Windows.Forms.LinkLabel link_source;
         private System.Windows.Forms.Label l_protocolName;
-        private System.Windows.Forms.Panel p_properties;
         private System.Windows.Forms.Label l_notes;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label l_desc;
     }
 }
 

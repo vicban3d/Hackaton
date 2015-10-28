@@ -14,12 +14,12 @@ namespace ProtoShark
 {
     partial class GUI : Form
     {
-        private static Size nodeSize = new Size(100, 20);
+        private static Size nodeSize = new Size(200, 20);
         private static Size nodeLabelSize = new Size(200, 20);
         private static String PROTOCOLS_FILE_PATH = "\\\\docman\\docman\\ProtoShark";
         
-        private static int initialHeight = 50;
-        private static int initialLeft = 50;
+        private static int initialHeight = 20;
+        private static int initialLeft = 20;
 
 
         private int structureIndex;
@@ -34,8 +34,18 @@ namespace ProtoShark
             fillProtocolList();
 
             p_view.AutoScroll = true;
+            
+            l_desc.BackColor = Color.White;
+            l_desc.BorderStyle = BorderStyle.FixedSingle;
+            l_desc.AutoSize = false;
+            l_desc.Size = new Size(250, 520);
+            l_desc.Location = new Point(730, 55);
+
 
             resetView();
+
+
+
         }
 
         private void drawData(LinkedList<Data> data)
@@ -45,8 +55,11 @@ namespace ProtoShark
                 structureDepth++;
                 foreach (Data child in data)
                 {
+                    structureIndex++;
                     child.drawData(this);
                 }
+                structureIndex++;
+
             }
         }
 
@@ -63,55 +76,35 @@ namespace ProtoShark
 
        public void drawData(SingleBlock data)
         {
-            createLabel(data.getName());
-            structureIndex++;           
+            createLabel(data.getName(), "A block that appears only once.");
             drawData(data.getChildren());
+            structureDepth--;
         }
 
 
         public void drawData(OptionalBlock data)
         {
-            createLabel(data.getName());
-
+            createLabel(data.getName(), "A block that may or may not appear depending on the condition.");
             Label conditionLabel = new Label();                       
             conditionLabel.Text = " -? " + data.getCondition();
             conditionLabel.Size = nodeLabelSize;
             conditionLabel.Location = new Point(nodeSize.Width + initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
             p_view.Controls.Add(conditionLabel);
-
-            structureIndex++;
-
-            if (data.getChildren() != null)
-            {
-                structureDepth++;
-                foreach (Data child in data.getChildren())
-                {
-                    child.drawData(this);
-                }
-            }
+            drawData(data.getChildren());
+            structureDepth--;
         }
 
 
         public void drawData(RepeatingBlock data)
         {
-            createLabel(data.getName());            
-
+            createLabel(data.getName(), "A block that appears repeatedly.");            
             Label conditionLabel = new Label();
-            conditionLabel.Text = " -X " + data.getNumOfRepetitions();
+            conditionLabel.Text = "  x " + data.getNumOfRepetitions();
             conditionLabel.Size = nodeLabelSize;
             conditionLabel.Location = new Point(nodeSize.Width + initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
             p_view.Controls.Add(conditionLabel);
-
-            structureIndex++;
-
-            if (data.getChildren() != null)
-            {
-                structureDepth++;
-                foreach (Data child in data.getChildren())
-                {
-                    child.drawData(this);
-                }
-            }
+            drawData(data.getChildren());
+            structureDepth--;
         }
 
         public void drawData(MultiField data)
@@ -120,37 +113,58 @@ namespace ProtoShark
         }
         public void drawData(FixedField data)
         {
-            createLabel(data.getName() + " (" + data.getSize() + ")");
+            createLabel(data.getName() + " (" + data.getSize() + ")", data.getDescription());
         }
         public void drawData(DependField data)
         {
-            createLabel(data.getName() + " (" + data.getInfo() + ")");
+            createLabel(data.getName() + " (" + data.getInfo() + ")", data.getDescription());
         }
 
-        private Label createLabel(String content)
+        private void createLabel(String content, string description)
         {
-
             Label dataLabel = new Label();
             dataLabel.BackColor = Color.White;
             dataLabel.BorderStyle = BorderStyle.Fixed3D;
+            dataLabel.AutoSize = false;
             dataLabel.Text = content;
             dataLabel.Size = nodeSize;
             dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
+
+            dataLabel.Click += (x, y) => clickHandler(description);
+
             p_view.Controls.Add(dataLabel);
-            return dataLabel;
+        }
+
+        private void clickHandler(string description)
+        {
+            l_desc.Text = description;
         }
 
         private void b_show_Click(object sender, EventArgs e)
         {
             p_view.Controls.Clear();
-            if (cb_protocolsList.Text != "")
+            structureIndex = 1;
+            structureDepth = 1;
+            l_desc.Text = "";
+            if (cb_protocolsList.Items.Contains(cb_protocolsList.Text))
             {
                 String filepath = PROTOCOLS_FILE_PATH + "\\" + cb_protocolsList.Text + ".xml";
-               // Protocol p = Facade.getProtocolFromXML(filepath);
-               // link_source.Text = p.getSource();
-               // LinkedList<Data> protocolData = p.getData();
-               // drawData(protocolData);               
-               // l_protocolName.Text = cb_protocolsList.Text;
+                // Protocol p = Facade.getProtocolFromXML(filepath);
+                // link_source.Text = p.getSource();
+                // LinkedList<Data> protocolData = p.getData();
+                // drawData(protocolData);               
+                 l_protocolName.Text = cb_protocolsList.Text;
+
+                FixedField ff = new FixedField("FixedField", "4", "This field is fixed with size 4 bytes.");
+                DependField df = new DependField("DependField", "FixedField == 0", "This field only exists if FiexedField is 0");
+                SingleBlock sb = new SingleBlock("Fields", "BlaBla");
+                RepeatingBlock rb = new RepeatingBlock("RepeatingBlock", "10");
+                sb.addField("FixedField", "fixed", "4", "This field is fixed with size 4 bytes.");
+                sb.addField("DependField", "dependant", "FixedField == 0", "This field only exists if FiexedField is 0");                
+                rb.addField("FixedField", "fixed", "4", "This field is fixed with size 4 bytes.");
+                rb.addField("DependField", "dependant", "FixedField == 0", "This field only exists if FiexedField is 0");
+                drawData(sb);
+                drawData(rb);
             }
             else
             {
@@ -163,6 +177,7 @@ namespace ProtoShark
             p_view.Controls.Clear();
             structureIndex = 1;
             structureDepth = 1;
+            l_desc.Text = "";
             Label error = new Label();
             error.Text = "Select Protocol";
             error.Size = new Size(200, 20);            
