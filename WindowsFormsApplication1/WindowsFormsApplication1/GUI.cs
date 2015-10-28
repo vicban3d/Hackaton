@@ -28,6 +28,8 @@ namespace WindowsFormsApplication1
             structureIndex = 1;
             structureDepth = 1;
             fillProtocolList();
+
+            p_view.AutoScroll = true;
         }
 
         private void fillProtocolList()
@@ -54,9 +56,37 @@ namespace WindowsFormsApplication1
             dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
             p_view.Controls.Add(dataLabel);
             structureIndex++;
-            structureDepth++;
             if (data.getChildren() != null)
             {
+                structureDepth++;
+                foreach (Data child in data.getChildren())
+                {
+                    drawData(child);
+                }
+            }
+        }
+
+        void drawData(OptionalBlock data)
+        {
+            Label dataLabel = new Label();
+            dataLabel.BackColor = Color.White;
+            dataLabel.BorderStyle = BorderStyle.Fixed3D;
+            dataLabel.Text = data.getName();
+            dataLabel.Size = nodeSize;
+            dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
+            p_view.Controls.Add(dataLabel);
+
+            Label conditionLabel = new Label();                       
+            conditionLabel.Text = data.getCondition();
+            conditionLabel.Size = nodeSize;
+            conditionLabel.Location = new Point(nodeSize.Width + initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
+            p_view.Controls.Add(dataLabel);
+
+            structureIndex++;
+
+            if (data.getChildren() != null)
+            {
+                structureDepth++;
                 foreach (Data child in data.getChildren())
                 {
                     drawData(child);
@@ -70,9 +100,14 @@ namespace WindowsFormsApplication1
             ///Protocol p = ...
             /// Data protocolData = p.getData();
             /// drawData(data);
+            structureIndex = 1;
+            structureDepth = 1;
+            p_view.Controls.Clear();
             l_protocolName.Text = cb_protocolsList.Text;
             FixedBlock fb = new FixedBlock("FixedBlock");
+            OptionalBlock ob = new OptionalBlock("OptionalBlock");
             drawData(fb);
+            drawData(ob);
         }
     }
 
