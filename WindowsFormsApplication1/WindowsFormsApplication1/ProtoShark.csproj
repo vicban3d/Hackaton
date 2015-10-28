@@ -50,6 +50,7 @@
     <Compile Include="Data.cs" />
     <Compile Include="DelimField.cs" />
     <Compile Include="DependField.cs" />
+    <Compile Include="Facade.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="FixedField.cs" />
     <Compile Include="Key.cs" />
