@@ -20,6 +20,6 @@ namespace ProtoShark
             return result;
         }
 
-        public 
+         
     }
 }
