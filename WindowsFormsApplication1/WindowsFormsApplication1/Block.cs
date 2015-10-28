@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ProtoShark
 {
@@ -12,6 +13,9 @@ namespace ProtoShark
         protected LinkedList<Data> data;
 
         public abstract void drawData(GUI gui);
+        public abstract String getType();
+        public abstract String getInfo();
+        public abstract String getInfoName();
         public String getName()
         {
             return name;
@@ -41,6 +45,11 @@ namespace ProtoShark
             else return null;
             data.AddLast(newField);
             return newField;
+        }
+
+        public void insertData(XMLCreator xml, XmlElement parent)
+        {
+            throw new NotImplementedException();
         }
     }
 }

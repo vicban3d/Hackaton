@@ -8,16 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProtoShark;
+using System.IO;
 
 namespace ProtoShark
 {
     partial class GUI : Form
     {
-        private static Size nodeSize = new Size(100, 20);
+        private static Size nodeSize = new Size(200, 20);
         private static Size nodeLabelSize = new Size(200, 20);
+        private static String PROTOCOLS_FILE_PATH = "\\\\docman\\docman\\ProtoShark";
         
-        private static int initialHeight = 50;
-        private static int initialLeft = 50;
+        private static int initialHeight = 0;
+        private static int initialLeft = 0;
 
 
         private int structureIndex;
@@ -26,135 +28,147 @@ namespace ProtoShark
 
         public GUI()
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             InitializeComponent();
             structureIndex = 1;
             structureDepth = 1;
-            fillProtocolList();
+            fillProtocolList();           
 
             p_view.AutoScroll = true;
+            
+            tb_desc.BackColor = Color.White;
+            tb_desc.BorderStyle = BorderStyle.FixedSingle;
+            tb_desc.AutoSize = false;
+            tb_desc.Size = new Size(520, 720);
+            tb_desc.Location = new Point(730, 55);
+            tb_desc.ScrollBars = ScrollBars.Vertical;
+            tb_desc.ReadOnly = true;
+            tb_desc.WordWrap = true;
 
-            resetView();
+
+
+
+
+        }
+
+        private void drawData(LinkedList<Data> data)
+        {
+            if (data != null)
+            {
+                structureDepth++;
+                foreach (Data child in data)
+                {
+                    structureIndex++;
+                    child.drawData(this);
+                }
+                structureIndex++;
+
+            }
         }
 
         private void fillProtocolList()
         {
             // Should read head XML file and fill in protocol names.
-            cb_protocolsList.Items.Add("HTTP");
-            cb_protocolsList.Items.Add("SMTP");
-            cb_protocolsList.Items.Add("FTP");
-            cb_protocolsList.Items.Add("SWF");
-            cb_protocolsList.Sorted = true;
+            DirectoryInfo dir = Directory.CreateDirectory(PROTOCOLS_FILE_PATH);
+            foreach (FileInfo file in dir.EnumerateFiles())
+            {
+                cb_protocolsList.Items.Add(file.Name.Split('.')[0]);
+            }
         }
 
 
        public void drawData(SingleBlock data)
         {
-            Label dataLabel = new Label();
-            dataLabel.BackColor = Color.White;
-            dataLabel.BorderStyle = BorderStyle.Fixed3D;
-            dataLabel.Text = data.getName();
-            dataLabel.Size = nodeSize;
-            dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
-            p_view.Controls.Add(dataLabel);
-            structureIndex++;
-            if (data.getChildren() != null)
-            {
-                structureDepth++;
-                foreach (Data child in data.getChildren())
-                {
-                    child.drawData(this);
-                }
-            }
+            createLabel(data.getName(), "A block that appears only once.");
+            drawData(data.getChildren());
+            structureDepth--;
         }
 
 
         public void drawData(OptionalBlock data)
         {
-            Label dataLabel = new Label();
-            dataLabel.BackColor = Color.White;
-            dataLabel.BorderStyle = BorderStyle.Fixed3D;
-            dataLabel.Text = data.getName();
-            dataLabel.Size = nodeSize;
-            dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
-            p_view.Controls.Add(dataLabel);
-
+            createLabel(data.getName(), "A block that may or may not appear depending on the condition.");
             Label conditionLabel = new Label();                       
             conditionLabel.Text = " -? " + data.getCondition();
             conditionLabel.Size = nodeLabelSize;
             conditionLabel.Location = new Point(nodeSize.Width + initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
             p_view.Controls.Add(conditionLabel);
-
-            structureIndex++;
-
-            if (data.getChildren() != null)
-            {
-                structureDepth++;
-                foreach (Data child in data.getChildren())
-                {
-                    child.drawData(this);
-                }
-            }
+            drawData(data.getChildren());
+            structureDepth--;
         }
 
 
         public void drawData(RepeatingBlock data)
         {
-            Label dataLabel = new Label();
-            dataLabel.BackColor = Color.White;
-            dataLabel.BorderStyle = BorderStyle.Fixed3D;
-            dataLabel.Text = data.getName();
-            dataLabel.Size = nodeSize;
-            dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
-            p_view.Controls.Add(dataLabel);
-
+            createLabel(data.getName(), "A block that appears repeatedly.");            
             Label conditionLabel = new Label();
-            conditionLabel.Text = " -X " + data.getNumOfRepetitions();
+            conditionLabel.Text = "  x " + data.getNumOfRepetitions();
             conditionLabel.Size = nodeLabelSize;
             conditionLabel.Location = new Point(nodeSize.Width + initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
             p_view.Controls.Add(conditionLabel);
-
-            structureIndex++;
-
-            if (data.getChildren() != null)
-            {
-                structureDepth++;
-                foreach (Data child in data.getChildren())
-                {
-                    child.drawData(this);
-                }
-            }
+            drawData(data.getChildren());
+            structureDepth--;
         }
 
         public void drawData(MultiField data)
         {
-     
+            string keys = "";
+            foreach(Key key in data.getKeys())
+            {
+                keys += key.getValue() + "\r\n" + key.getDescription() + "\r\n\r\n";
+            }
+            keys = "\r\n\r\nMay be equal to one of the following values:\r\n" + keys;
+            createLabel(data.getName(), data.getDescription() + keys);
         }
+
+        internal void drawData(DelimField data)
+        {
+            createLabel(data.getName() + " : " + data.getDelim(), data.getDescription() + "\r\n\r\nThe value of this field ends with \'" + data.getDelim() + "\'.\r\n");
+        }
+
         public void drawData(FixedField data)
         {
-
+            createLabel(data.getName() + " (" + data.getSize() + ")", data.getDescription() + "\r\n\r\nThe size of this field is " + data.getSize() + " bytes.\r\n");
         }
         public void drawData(DependField data)
         {
+            createLabel(data.getName() + " (" + data.getInfo() + ")", data.getDescription() + "\r\n\r\nThis field may or may not appear depending on " + data.getInfo() + " field.\r\n");
+        }
 
+        private void createLabel(String content, string description)
+        {
+            Label dataLabel = new Label();
+            dataLabel.BackColor = Color.White;
+            dataLabel.BorderStyle = BorderStyle.Fixed3D;
+            dataLabel.AutoSize = false;
+            dataLabel.Text = content;
+            dataLabel.Size = nodeSize;
+            dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
+
+            dataLabel.Click += (x, y) => clickHandler(description);
+
+            p_view.Controls.Add(dataLabel);
+        }
+
+        private void clickHandler(string description)
+        {
+            tb_desc.Text = description;
         }
 
         private void b_show_Click(object sender, EventArgs e)
         {
             p_view.Controls.Clear();
-            if (cb_protocolsList.Text != "")
+            structureIndex = 1;
+            structureDepth = 1;
+            tb_desc.Text = "";
+            if (cb_protocolsList.Items.Contains(cb_protocolsList.Text))
             {
-                ///Protocol p = ...
-                /// Data protocolData = p.getData();
-                /// drawData(data);
-                structureIndex = 1;
-                structureDepth = 1;                
-                l_protocolName.Text = cb_protocolsList.Text;
-               // SingleBlock fb = new SingleBlock("FixedBlock");
-              //  OptionalBlock ob = new OptionalBlock("OptionalBlock");
-              //  RepeatingBlock rb = new RepeatingBlock("RepeatingBlock");
-             //   drawData(fb);
-            //    drawData(ob);
-             //   drawData(rb);
+                String filepath = PROTOCOLS_FILE_PATH + "\\" + cb_protocolsList.Text + ".xml";
+                 Protocol p = Facade.getProtocolFromXML(filepath);
+                 link_source.Text = p.getSource();
+                 LinkedList<Data> protocolData = p.getData();
+                 drawData(protocolData);               
+                 l_protocolName.Text = cb_protocolsList.Text;
             }
             else
             {
@@ -165,6 +179,9 @@ namespace ProtoShark
         private void resetView()
         {
             p_view.Controls.Clear();
+            structureIndex = 1;
+            structureDepth = 1;
+            tb_desc.Text = "";
             Label error = new Label();
             error.Text = "Select Protocol";
             error.Size = new Size(200, 20);            

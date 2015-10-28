@@ -20,6 +20,9 @@ namespace ProtoShark
             foreach (Data node in data) { 
                 node.insertData(this,productNode);
             }
+
+            doc.Save(path);
+        
         }
   
         public void insertBlock(Block block, XmlElement parent)
@@ -54,7 +57,7 @@ namespace ProtoShark
         {
             XmlElement keyNode = doc.CreateElement("key");
             keyNode.SetAttribute("description", child.getDescription());
-            keyNode.InnerText(child.getValue();
+            keyNode.InnerText = child.getValue();
             parent.AppendChild(keyNode);
         }
     }

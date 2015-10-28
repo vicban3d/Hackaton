@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ProtoShark
 {
@@ -18,5 +19,18 @@ namespace ProtoShark
             return name;
         }
 
+        public String getDescription()
+        {
+            return description;
+        }
+        public abstract String getType();
+        public abstract String getInfo();
+        public abstract String getInfoName();
+        abstract public List<Key> getKeys();
+
+        public void insertData(XMLCreator xml, XmlElement parent)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

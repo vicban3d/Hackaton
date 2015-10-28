@@ -21,5 +21,30 @@ namespace ProtoShark
         {
             gui.drawData(this);
         }
+
+        public String getDelim()
+        {
+            return delim;
+        }
+
+        public override string getInfo()
+        {
+           return getDelim();
+        }
+
+        public override string getInfoName()
+        {
+            return "delim";
+        }
+
+        public override List<Key> getKeys()
+        {
+            return null;
+        }
+
+        public override string getType()
+        {
+            return "delimited";
+        }
     }
 }

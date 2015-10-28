@@ -21,5 +21,29 @@ namespace ProtoShark
         {
             gui.drawData(this);
         }
+
+        public String getSize()
+        {
+            return size;
+        }
+        public override List<Key> getKeys()
+        {
+            return null;
+        }
+
+        public override string getType()
+        {
+            return "fixed";
+        }
+
+        public override string getInfo()
+        {
+            return getSize();
+        }
+
+        public override string getInfoName()
+        {
+            return "size";
+        }
     }
 }

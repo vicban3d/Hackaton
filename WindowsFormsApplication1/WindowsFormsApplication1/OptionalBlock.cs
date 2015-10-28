@@ -26,5 +26,20 @@ namespace ProtoShark
         {
             return condition;
         }
+
+        public override string getInfo()
+        {
+            return getCondition();
+        }
+
+        public override string getInfoName()
+        {
+            return "condition";
+        }
+
+        public override string getType()
+        {
+            return "optional";
+        }
     }
 }
