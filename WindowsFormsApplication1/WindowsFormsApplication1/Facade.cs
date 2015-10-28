@@ -8,10 +8,10 @@ namespace ProtoShark
 {
     static class Facade
     {
-        public static void getProtocolFromXML(String path)
+        public static Protocol getProtocolFromXML(String path)
         {
             XMLParser parser = new XMLParser();
-
+            return parser.parse(path);
         }
     }
 }
