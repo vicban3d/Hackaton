@@ -14,11 +14,11 @@ namespace WindowsFormsApplication1
         [STAThread]
         static void Main()
         {
-            XMLParser xm = new XMLParser();
-            xm.func();
-    //        Application.EnableVisualStyles();
-//            Application.SetCompatibleTextRenderingDefault(false);
-  //          Application.Run(new Form1());
+            Console.Write("aaaa");
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new GUI());
         }
     }
 }
