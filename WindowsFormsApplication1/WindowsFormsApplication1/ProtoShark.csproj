@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Block.cs" />
+    <Compile Include="Data.cs" />
     <Compile Include="FixedBlock.cs" />
     <Compile Include="GUI.cs">
       <SubType>Form</SubType>
