@@ -11,6 +11,7 @@ namespace ProtoShark
         public SingleBlock(String name)
         {
            this.name = name;
+           this.data = new LinkedList<Data>();
         }
     }
 }

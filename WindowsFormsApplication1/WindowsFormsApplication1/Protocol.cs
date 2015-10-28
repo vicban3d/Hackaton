@@ -21,15 +21,6 @@ namespace ProtoShark
             this.data = new LinkedList<Data>();
         } 
 
-        public static List<String> getAttributes()
-        {
-            List<String> result = new List<string>();
-            result.Add("name");
-            result.Add("source");
-            result.Add("description");
-            return result;
-        }
-
         public String getName()
         {
             return name;
@@ -64,6 +55,11 @@ namespace ProtoShark
             else if (type.Equals("multi")) newField = new MultiField(name, info);
             else return null;
             return newField;
+        }
+
+        public LinkedList<Data> getData()
+        {
+            return data;
         }
     }
 }

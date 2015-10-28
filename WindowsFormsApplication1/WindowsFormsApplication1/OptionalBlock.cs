@@ -11,6 +11,9 @@ namespace ProtoShark
         public OptionalBlock(String name)
         {
             this.name = name;
+            this.data = new LinkedList<Data>();
         }
+
+        public draw
     }
 }

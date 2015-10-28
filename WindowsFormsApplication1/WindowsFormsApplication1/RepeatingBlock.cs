@@ -11,6 +11,7 @@ namespace ProtoShark
         public RepeatingBlock(String name)
         {
             this.name = name;
+            this.data = new LinkedList<Data>();
         }
     }
 }

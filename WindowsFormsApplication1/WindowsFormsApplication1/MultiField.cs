@@ -15,7 +15,7 @@ namespace ProtoShark
         {
             this.name = name;
             this.info = info;
-                    
-    }
+            this.keys = new List<Key>();
+        }
     }
 }
