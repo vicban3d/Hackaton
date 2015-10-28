@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProtoShark
+namespace WindowsFormsApplication1
 {
     class Protocol
     {
@@ -38,7 +38,7 @@ namespace ProtoShark
 
         public Data createBlock(String name, String type)
         {
-            Data newBlock;
+            Data newBlock = null;
             if (type.Equals("repeating")) newBlock = new RepeatingBlock(name);
             if (type.Equals("fixed")) newBlock = new FixedBlock(name);
             if (type.Equals("optional")) newBlock = new OptionalBlock(name);

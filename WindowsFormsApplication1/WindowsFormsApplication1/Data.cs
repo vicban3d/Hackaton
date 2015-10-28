@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1
 {
-    class OptionalBlock : Block
+    interface Data
     {
-        public OptionalBlock(String name)
-        {
-
-        }
     }
 }

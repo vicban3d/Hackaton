@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProtoShark
+namespace WindowsFormsApplication1
 {
     class RepeatingBlock : Block
     {

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Block.cs" />
+    <Compile Include="Data.cs" />
     <Compile Include="FixedBlock.cs" />
     <Compile Include="GUI.cs">
       <SubType>Form</SubType>
@@ -65,8 +66,6 @@
     <EmbeddedResource Include="GUI.resx">
       <DependentUpon>GUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="obj\Debug\ProtoShark.Properties.Resources.resources" />
-    <EmbeddedResource Include="obj\Debug\WindowsFormsApplication1.GUI.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -80,12 +79,8 @@
     <None Include="bin\Debug\ProtoShark.exe.config" />
     <None Include="bin\Debug\ProtoShark.vshost.exe.config" />
     <None Include="bin\Debug\ProtoShark.vshost.exe.manifest" />
-    <None Include="bin\Debug\WindowsFormsApplication1.vshost.exe.config" />
-    <None Include="bin\Debug\WindowsFormsApplication1.vshost.exe.manifest" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\ProtoShark.csproj.GenerateResource.Cache" />
-    <None Include="obj\Debug\ProtoShark.csprojResolveAssemblyReference.cache" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -100,16 +95,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\ProtoShark.exe" />
-    <Content Include="bin\Debug\ProtoShark.pdb" />
     <Content Include="bin\Debug\ProtoShark.vshost.exe" />
     <Content Include="obj\Debug\ProtoShark.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\ProtoShark.exe" />
-    <Content Include="obj\Debug\ProtoShark.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using WindowsFormsApplication1;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,6 @@ namespace WindowsFormsApplication1
 
         private int structureIndex;
         private int structureDepth;
-        
 
 
         public GUI()
@@ -27,7 +27,6 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             structureIndex = 1;
             structureDepth = 1;
-
             fillProtocolList();
         }
 
@@ -41,28 +40,43 @@ namespace WindowsFormsApplication1
             cb_protocolsList.Sorted = true;
         }
 
-        void drawData()
+        void drawData(Data data)
         {
-            l_protocolName.Text = cb_protocolsList.Text;
-            Label l = new Label();            
-            l.BackColor = Color.White;
-            l.BorderStyle = BorderStyle.Fixed3D;            
-            l.Text = "some field";
-            l.Size = nodeSize;
-            l.Location = new Point(initialLeft + structureDepth * nodeSize.Width/3, initialHeight + structureIndex * nodeSize.Height);
-            p_view.Controls.Add(l);
+        }
+
+        void drawData(FixedBlock data)
+        {
+            Label dataLabel = new Label();
+            dataLabel.BackColor = Color.White;
+            dataLabel.BorderStyle = BorderStyle.Fixed3D;
+            dataLabel.Text = data.getName();
+            dataLabel.Size = nodeSize;
+            dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
+            p_view.Controls.Add(dataLabel);
             structureIndex++;
             structureDepth++;
+            if (data.getChildren() != null)
+            {
+                foreach (Data child in data.getChildren())
+                {
+                    drawData(child);
+                }
+            }
         }
 
 
         private void b_show_Click(object sender, EventArgs e)
         {
-            drawData();
+            ///Protocol p = ...
+            /// Data protocolData = p.getData();
+            /// drawData(data);
+            l_protocolName.Text = cb_protocolsList.Text;
+            FixedBlock fb = new FixedBlock("FixedBlock");
+            drawData(fb);
         }
     }
 
-   
+
 
 
 
