@@ -41,11 +41,10 @@ namespace ProtoShark
             this.l_notes = new System.Windows.Forms.Label();
             this.link_source = new System.Windows.Forms.LinkLabel();
             this.l_protocolName = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.tb_desc = new System.Windows.Forms.TextBox();
             this.p_create = new System.Windows.Forms.Panel();
             this.p_newlayers = new System.Windows.Forms.Panel();
+            this.tv_data_tree = new System.Windows.Forms.TreeView();
             this.b_add_data = new System.Windows.Forms.Button();
             this.p_newprotocol = new System.Windows.Forms.Panel();
             this.tb_title = new System.Windows.Forms.TextBox();
@@ -67,13 +66,15 @@ namespace ProtoShark
             this.t_data_name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.t_data_desc = new System.Windows.Forms.TextBox();
-            this.tv_data_tree = new System.Windows.Forms.TreeView();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.p_menu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.p_create.SuspendLayout();
             this.p_newlayers.SuspendLayout();
             this.p_newprotocol.SuspendLayout();
             this.p_add_new_data.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // t_data_majorType
@@ -170,28 +171,6 @@ namespace ProtoShark
             this.l_protocolName.Size = new System.Drawing.Size(0, 20);
             this.l_protocolName.TabIndex = 0;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1141, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(102, 49);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Yellow;
-            this.label1.Location = new System.Drawing.Point(1040, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 20);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "ProtoShark";
-            // 
             // tb_desc
             // 
             this.tb_desc.Location = new System.Drawing.Point(730, 54);
@@ -219,6 +198,13 @@ namespace ProtoShark
             this.p_newlayers.Name = "p_newlayers";
             this.p_newlayers.Size = new System.Drawing.Size(530, 711);
             this.p_newlayers.TabIndex = 9;
+            // 
+            // tv_data_tree
+            // 
+            this.tv_data_tree.Location = new System.Drawing.Point(-1, -1);
+            this.tv_data_tree.Name = "tv_data_tree";
+            this.tv_data_tree.Size = new System.Drawing.Size(528, 577);
+            this.tv_data_tree.TabIndex = 1;
             // 
             // b_add_data
             // 
@@ -416,12 +402,25 @@ namespace ProtoShark
             this.t_data_desc.Size = new System.Drawing.Size(259, 83);
             this.t_data_desc.TabIndex = 18;
             // 
-            // tv_data_tree
+            // pictureBox2
             // 
-            this.tv_data_tree.Location = new System.Drawing.Point(-1, -1);
-            this.tv_data_tree.Name = "tv_data_tree";
-            this.tv_data_tree.Size = new System.Drawing.Size(528, 577);
-            this.tv_data_tree.TabIndex = 1;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(9, 4);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(176, 44);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(35, 322);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(99, 70);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // GUI
             // 
@@ -429,29 +428,30 @@ namespace ProtoShark
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1255, 786);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.p_add_new_data);
             this.Controls.Add(this.l_protocolDesc);
             this.Controls.Add(this.p_create);
-            this.Controls.Add(this.tb_desc);
             this.Controls.Add(this.link_source);
             this.Controls.Add(this.l_protocolName);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.l_notes);
             this.Controls.Add(this.p_view);
             this.Controls.Add(this.p_menu);
+            this.Controls.Add(this.tb_desc);
             this.Name = "GUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProtoShark";
             this.p_menu.ResumeLayout(false);
             this.p_menu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.p_create.ResumeLayout(false);
             this.p_newlayers.ResumeLayout(false);
             this.p_newprotocol.ResumeLayout(false);
             this.p_newprotocol.PerformLayout();
             this.p_add_new_data.ResumeLayout(false);
             this.p_add_new_data.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -467,8 +467,6 @@ namespace ProtoShark
         private System.Windows.Forms.LinkLabel link_source;
         private System.Windows.Forms.Label l_protocolName;
         private System.Windows.Forms.Label l_notes;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb_desc;
         private System.Windows.Forms.Button b_create;
         private System.Windows.Forms.Panel p_create;
@@ -496,6 +494,8 @@ namespace ProtoShark
         private System.Windows.Forms.TextBox t_data_name;
         private System.Windows.Forms.ComboBox t_data_majorType;
         private System.Windows.Forms.TreeView tv_data_tree;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
