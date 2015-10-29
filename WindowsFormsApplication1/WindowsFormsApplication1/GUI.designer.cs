@@ -67,6 +67,7 @@ namespace ProtoShark
             this.t_data_name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.t_data_desc = new System.Windows.Forms.TextBox();
+            this.tv_data_tree = new System.Windows.Forms.TreeView();
             this.p_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.p_create.SuspendLayout();
@@ -184,7 +185,7 @@ namespace ProtoShark
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.ForeColor = System.Drawing.Color.Yellow;
             this.label1.Location = new System.Drawing.Point(1040, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 20);
@@ -212,6 +213,7 @@ namespace ProtoShark
             // p_newlayers
             // 
             this.p_newlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.p_newlayers.Controls.Add(this.tv_data_tree);
             this.p_newlayers.Controls.Add(this.b_add_data);
             this.p_newlayers.Location = new System.Drawing.Point(4, 4);
             this.p_newlayers.Name = "p_newlayers";
@@ -305,9 +307,9 @@ namespace ProtoShark
             // 
             // l_protocolDesc
             // 
-            this.l_protocolDesc.Location = new System.Drawing.Point(359, 15);
+            this.l_protocolDesc.Location = new System.Drawing.Point(315, 15);
             this.l_protocolDesc.Name = "l_protocolDesc";
-            this.l_protocolDesc.Size = new System.Drawing.Size(364, 36);
+            this.l_protocolDesc.Size = new System.Drawing.Size(408, 36);
             this.l_protocolDesc.TabIndex = 7;
             // 
             // p_add_new_data
@@ -414,10 +416,18 @@ namespace ProtoShark
             this.t_data_desc.Size = new System.Drawing.Size(259, 83);
             this.t_data_desc.TabIndex = 18;
             // 
+            // tv_data_tree
+            // 
+            this.tv_data_tree.Location = new System.Drawing.Point(-1, -1);
+            this.tv_data_tree.Name = "tv_data_tree";
+            this.tv_data_tree.Size = new System.Drawing.Size(528, 577);
+            this.tv_data_tree.TabIndex = 1;
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1255, 786);
             this.Controls.Add(this.p_add_new_data);
             this.Controls.Add(this.l_protocolDesc);
@@ -485,6 +495,7 @@ namespace ProtoShark
         private System.Windows.Forms.TextBox t_data_desc;
         private System.Windows.Forms.TextBox t_data_name;
         private System.Windows.Forms.ComboBox t_data_majorType;
+        private System.Windows.Forms.TreeView tv_data_tree;
     }
 }
 
