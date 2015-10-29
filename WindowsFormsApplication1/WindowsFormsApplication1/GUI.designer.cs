@@ -44,8 +44,6 @@ namespace ProtoShark
             this.tb_desc = new System.Windows.Forms.TextBox();
             this.p_create = new System.Windows.Forms.Panel();
             this.p_newlayers = new System.Windows.Forms.Panel();
-            this.tv_data_tree = new System.Windows.Forms.TreeView();
-            this.b_add_data = new System.Windows.Forms.Button();
             this.p_newprotocol = new System.Windows.Forms.Panel();
             this.tb_title = new System.Windows.Forms.TextBox();
             this.l_description = new System.Windows.Forms.Label();
@@ -68,13 +66,20 @@ namespace ProtoShark
             this.t_data_desc = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.p_keys = new System.Windows.Forms.Panel();
+            this.keys_table = new System.Windows.Forms.DataGridView();
+            this.b_add_with_keys = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_menu.SuspendLayout();
             this.p_create.SuspendLayout();
-            this.p_newlayers.SuspendLayout();
             this.p_newprotocol.SuspendLayout();
             this.p_add_new_data.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.p_keys.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.keys_table)).BeginInit();
             this.SuspendLayout();
             // 
             // t_data_majorType
@@ -192,31 +197,10 @@ namespace ProtoShark
             // p_newlayers
             // 
             this.p_newlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.p_newlayers.Controls.Add(this.tv_data_tree);
-            this.p_newlayers.Controls.Add(this.b_add_data);
             this.p_newlayers.Location = new System.Drawing.Point(4, 4);
             this.p_newlayers.Name = "p_newlayers";
             this.p_newlayers.Size = new System.Drawing.Size(530, 711);
             this.p_newlayers.TabIndex = 9;
-            // 
-            // tv_data_tree
-            // 
-            this.tv_data_tree.Location = new System.Drawing.Point(-1, -1);
-            this.tv_data_tree.Name = "tv_data_tree";
-            this.tv_data_tree.Size = new System.Drawing.Size(528, 577);
-            this.tv_data_tree.TabIndex = 1;
-            // 
-            // b_add_data
-            // 
-            this.b_add_data.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("b_add_data.BackgroundImage")));
-            this.b_add_data.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.b_add_data.Location = new System.Drawing.Point(4, 5);
-            this.b_add_data.Name = "b_add_data";
-            this.b_add_data.Size = new System.Drawing.Size(41, 39);
-            this.b_add_data.TabIndex = 0;
-            this.b_add_data.Tag = "1";
-            this.b_add_data.UseVisualStyleBackColor = true;
-            this.b_add_data.Click += new System.EventHandler(this.b_add_data_Click);
             // 
             // p_newprotocol
             // 
@@ -350,7 +334,6 @@ namespace ProtoShark
             this.l_data_desc.Name = "l_data_desc";
             this.l_data_desc.Size = new System.Drawing.Size(0, 13);
             this.l_data_desc.TabIndex = 15;
-            this.l_data_desc.Click += new System.EventHandler(this.label5_Click);
             // 
             // label4
             // 
@@ -368,6 +351,7 @@ namespace ProtoShark
             this.t_data_minorType.Name = "t_data_minorType";
             this.t_data_minorType.Size = new System.Drawing.Size(162, 21);
             this.t_data_minorType.TabIndex = 12;
+            this.t_data_minorType.SelectedIndexChanged += new System.EventHandler(this.t_data_minorType_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -405,9 +389,9 @@ namespace ProtoShark
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(9, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(9, 8);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(176, 44);
+            this.pictureBox2.Size = new System.Drawing.Size(162, 42);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 8;
             this.pictureBox2.TabStop = false;
@@ -415,12 +399,66 @@ namespace ProtoShark
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(35, 322);
+            this.pictureBox1.Location = new System.Drawing.Point(35, 292);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(99, 70);
+            this.pictureBox1.Size = new System.Drawing.Size(99, 100);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            // 
+            // p_keys
+            // 
+            this.p_keys.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.p_keys.Controls.Add(this.keys_table);
+            this.p_keys.Controls.Add(this.b_add_with_keys);
+            this.p_keys.Controls.Add(this.label5);
+            this.p_keys.Location = new System.Drawing.Point(730, 205);
+            this.p_keys.Name = "p_keys";
+            this.p_keys.Size = new System.Drawing.Size(503, 569);
+            this.p_keys.TabIndex = 19;
+            // 
+            // keys_table
+            // 
+            this.keys_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.keys_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Key,
+            this.Description});
+            this.keys_table.Location = new System.Drawing.Point(6, 8);
+            this.keys_table.Name = "keys_table";
+            this.keys_table.Size = new System.Drawing.Size(491, 520);
+            this.keys_table.TabIndex = 19;
+            // 
+            // b_add_with_keys
+            // 
+            this.b_add_with_keys.Location = new System.Drawing.Point(6, 534);
+            this.b_add_with_keys.Name = "b_add_with_keys";
+            this.b_add_with_keys.Size = new System.Drawing.Size(98, 30);
+            this.b_add_with_keys.TabIndex = 5;
+            this.b_add_with_keys.Text = "<< Add";
+            this.b_add_with_keys.UseVisualStyleBackColor = true;
+            this.b_add_with_keys.Click += new System.EventHandler(this.b_add_with_keys_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(241, 8);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 13);
+            this.label5.TabIndex = 15;
+            // 
+            // Key
+            // 
+            this.Key.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Key.FillWeight = 30F;
+            this.Key.HeaderText = "Key";
+            this.Key.Name = "Key";
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Description.FillWeight = 70F;
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
             // 
             // GUI
             // 
@@ -428,6 +466,7 @@ namespace ProtoShark
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1255, 786);
+            this.Controls.Add(this.p_keys);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.p_add_new_data);
@@ -445,13 +484,15 @@ namespace ProtoShark
             this.p_menu.ResumeLayout(false);
             this.p_menu.PerformLayout();
             this.p_create.ResumeLayout(false);
-            this.p_newlayers.ResumeLayout(false);
             this.p_newprotocol.ResumeLayout(false);
             this.p_newprotocol.PerformLayout();
             this.p_add_new_data.ResumeLayout(false);
             this.p_add_new_data.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.p_keys.ResumeLayout(false);
+            this.p_keys.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.keys_table)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -480,7 +521,6 @@ namespace ProtoShark
         private System.Windows.Forms.TextBox tb_description;
         private System.Windows.Forms.Panel p_newprotocol;
         private System.Windows.Forms.Panel p_newlayers;
-        private System.Windows.Forms.Button b_add_data;
         private System.Windows.Forms.Panel p_add_new_data;
         private System.Windows.Forms.TextBox t_data_info;
         private System.Windows.Forms.Label label6;
@@ -493,9 +533,14 @@ namespace ProtoShark
         private System.Windows.Forms.TextBox t_data_desc;
         private System.Windows.Forms.TextBox t_data_name;
         private System.Windows.Forms.ComboBox t_data_majorType;
-        private System.Windows.Forms.TreeView tv_data_tree;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel p_keys;
+        private System.Windows.Forms.Button b_add_with_keys;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView keys_table;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Key;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
     }
 }
 

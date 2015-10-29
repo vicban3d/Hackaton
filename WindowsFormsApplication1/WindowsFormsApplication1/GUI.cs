@@ -53,6 +53,8 @@ namespace ProtoShark
             p_create.Hide();
             p_newlayers.Hide();
             p_add_new_data.Hide();
+            p_keys.Hide();
+
 
 
 
@@ -248,12 +250,6 @@ namespace ProtoShark
 
         private void b_create_Click(object sender, EventArgs e)
         {
-
-            tv = new TreeView();
-            tv.Size = p_newlayers.Size;
-            tv.Location = p_newlayers.Location;
-            tv.HideSelection = false;           
-            p_newlayers.Controls.Add(tv);
             createMode = true;
             p_view.Controls.Clear();
             structureIndex = 1;
@@ -279,11 +275,21 @@ namespace ProtoShark
         private void b_save_Click(object sender, EventArgs e)
         {
             protocol = new Protocol(tb_title.Text, tb_source.Text, tb_description.Text);
+
+            tv = new TreeView();
+            tv.Size = p_newlayers.Size;
+            tv.Location = p_newlayers.Location;
+            tv.HideSelection = false;
+            MessageBox.Show(protocol.getName() + " " + tb_title.Text);
+            tv.Nodes.Add("Block", protocol.getName(), protocol.getSource(), protocol.getDescription());
+            tv.SelectedNode = tv.Nodes[0];
+            p_newlayers.Controls.Add(tv);
+
+
             p_newprotocol.Hide();
             p_newlayers.Show();
             l_protocolName.Text = protocol.getName();
             l_protocolDesc.Text = protocol.getDescription();
-            //  p_add_new_data.Hide();
             p_add_new_data.Show();
         }
 
@@ -317,11 +323,7 @@ namespace ProtoShark
             }
 
         }
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
+ 
         private void b_add_data_filled_Click(object sender, EventArgs e)
         {
             string name = t_data_name.Text;
@@ -332,35 +334,68 @@ namespace ProtoShark
             t_data_minorType.Text = "";
             string info = t_data_info.Text;
             t_data_info.Text = "";
+            string desc = t_data_desc.Text;
+            t_data_desc.Text = "";
 
 
-            if (tv.SelectedNode == null || tv.SelectedNode.Name == "Block")
+            if (tv.SelectedNode.Name == "Block")
             {
                 if (majorType == "Block")
                 {
-                    if (tv.SelectedNode == null)
-                    {
-                        tv.Nodes.Add(majorType, name, minorType, info);
-                    }
-                    else
-                    {
-                        tv.SelectedNode.Nodes.Add(majorType, name, minorType, info);
-                    }
+                    tv.SelectedNode.Nodes.Add(majorType, name, minorType, info);
                 }
                 else if (majorType == "Field")
                 {
-                    
-                    if (tv.SelectedNode == null)
-                    {
-                        tv.Nodes.Add(minorType, name, info, t_data_desc.Text);
-                    }
-                    else
-                    {
-                        tv.SelectedNode.Nodes.Add(minorType, name, info, t_data_desc.Text);
-                    }
-                    t_data_desc.Text = "";
+                    tv.SelectedNode.Nodes.Add(minorType, name, info, desc);
+
                 }
             }
+            else
+            {
+                MessageBox.Show("Cannot append to selected field.");
+            }
+        }
+
+        private void t_data_minorType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string minorTypeSelected = t_data_minorType.Text;
+            if (minorTypeSelected == "multi")
+            {
+                p_keys.Show();
+                b_add_data_filled.Hide();
+            }
+            else
+            {
+                p_keys.Hide();
+                b_add_data_filled.Show();
+            }
+        }
+
+        private void b_add_with_keys_Click(object sender, EventArgs e)
+        {
+            if (tv.SelectedNode.Name == "Block")
+            {
+                string keys = "";
+                foreach (DataGridViewRow row in keys_table.Rows)
+                {
+                    keys += row.Cells[0].Value + ":" + row.Cells[1].Value + ";";
+                }
+
+                string name = t_data_name.Text;
+                t_data_name.Text = "";
+                string majorType = t_data_majorType.Text;
+                t_data_majorType.Text = "";
+                string minorType = t_data_minorType.Text.ToLower();
+                t_data_minorType.Text = "";
+                string info = t_data_info.Text;
+                t_data_info.Text = "";
+                string desc = t_data_desc.Text;
+                t_data_desc.Text = "";
+
+                tv.SelectedNode.Nodes.Add(minorType, name, keys, desc);
+
+            }
+
         }
     }
 
