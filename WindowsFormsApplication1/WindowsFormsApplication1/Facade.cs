@@ -23,17 +23,28 @@ namespace ProtoShark
         public static void createProtocol(TreeView tree)
         {
             TreeNodeCollection treeCol = tree.Nodes;
-            treeCol.Add("", "", "", "");
             Protocol prot = new Protocol(treeCol[0].Text, treeCol[0].ImageKey, treeCol[0].SelectedImageKey);
             Block data = null;
             foreach (TreeNode t in treeCol[0].Nodes)
             {
-                if (t.Name.Equals("block"))
+                if (t.Name.Equals("Block"))
                 {
                     data = prot.createBlock(t.Text, t.ImageKey, t.SelectedImageKey);
                     createProtocol(t.Nodes, data);
                 }
-                else prot.createField(t.Name, t.Text, t.ImageKey, t.SelectedImageKey);
+                else
+                {
+                    if(t.Name.Equals("multi"))
+                    { 
+                    Field f = prot.createField(t.Text, t.Name,  "", t.SelectedImageKey);
+                    string[] values = t.ImageKey.Split(';');
+                    foreach(string s in values)
+                        {
+                            string[] pair = s.Split(':');
+                            ((MultiField)f).addKey(pair[0], pair[1]);
+                        }
+                   } else prot.createField(t.Text, t.Name, t.ImageKey, t.SelectedImageKey);
+                }
             }
             createXML(prot);
         }
@@ -43,12 +54,25 @@ namespace ProtoShark
             Block temp = null;
             foreach (TreeNode t in tree)
             {
-                if (t.Name.Equals("block"))
+                if (t.Name.Equals("Block"))
                 {
                     temp = data.addBlock(t.Text, t.ImageKey, t.SelectedImageKey);
                     createProtocol(t.Nodes, temp);
                 }
-                else data.addField(t.Name, t.Text, t.ImageKey, t.SelectedImageKey);
+                else
+                {
+                    if (t.Name.Equals("multi"))
+                    {
+                        Field f = data.addField(t.Text, t.Name, "", t.SelectedImageKey);
+                        string[] values = t.ImageKey.Split(';');
+                        foreach (string s in values)
+                        {
+                            string[] pair = s.Split(':');
+                            ((MultiField)f).addKey(pair[0], pair[1]);
+                        }
+                    }
+                    else data.addField(t.Text, t.Name, t.ImageKey, t.SelectedImageKey);
+                }
             }
         }
     }
