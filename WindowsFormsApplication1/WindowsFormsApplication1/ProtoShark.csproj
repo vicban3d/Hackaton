@@ -25,12 +25,13 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -127,6 +128,7 @@
     <Content Include="bin\Release\ProtoShark.exe" />
     <Content Include="bin\Release\ProtoShark.pdb" />
     <Content Include="bin\Release\ProtoShark.vshost.exe" />
+    <Content Include="key.png" />
     <Content Include="obj\Debug\ProtoShark.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\ProtoShark.exe" />
     <Content Include="obj\Debug\ProtoShark.pdb" />
@@ -135,6 +137,7 @@
     <Content Include="obj\Release\ProtoShark.exe" />
     <Content Include="obj\Release\ProtoShark.pdb" />
     <Content Include="obj\Release\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="plus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
