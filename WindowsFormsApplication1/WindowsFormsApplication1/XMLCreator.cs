@@ -10,7 +10,7 @@ namespace ProtoShark
 
         public void create(Protocol protocol)
         {
-            string path = "\\\\docman\\docman\\ProtoShark\\" + protocol.getName()+ ".xml";
+            string path = "C:\\Users\\gavrielg\\Desktop\\Tasks\\" + protocol.getName()+ ".xml";
 
          
 

@@ -20,7 +20,7 @@ namespace ProtoShark
         private bool createMode = false;
         private static Size nodeSize = new Size(180, 20);
         private static Size nodeLabelSize = new Size(200, 20);
-        private static String PROTOCOLS_FILE_PATH = "\\\\docman\\docman\\ProtoShark";
+        private static String PROTOCOLS_FILE_PATH = "C:\\Users\\gavrielg\\Desktop\\Tasks";
 
         private static int initialHeight = -20;
         private static int initialLeft = -100;
