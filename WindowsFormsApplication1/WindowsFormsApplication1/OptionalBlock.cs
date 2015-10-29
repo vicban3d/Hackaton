@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ProtoShark
 {
@@ -40,6 +41,10 @@ namespace ProtoShark
         public override string getType()
         {
             return "optional";
+        }
+        public override void insertData(XMLCreator xml, XmlElement parent)
+        {
+            xml.insertBlock(this, parent);
         }
     }
 }

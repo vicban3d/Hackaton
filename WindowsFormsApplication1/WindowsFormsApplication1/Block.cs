@@ -47,9 +47,6 @@ namespace ProtoShark
             return newField;
         }
 
-        public void insertData(XMLCreator xml, XmlElement parent)
-        {
-            throw new NotImplementedException();
-        }
+        abstract public void insertData(XMLCreator xml, XmlElement parent);
     }
 }

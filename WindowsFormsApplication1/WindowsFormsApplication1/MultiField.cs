@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ProtoShark
 {
@@ -47,6 +48,10 @@ namespace ProtoShark
         public override string getInfoName()
         {
             return "info";
+        }
+        public override void insertData(XMLCreator xml, XmlElement parent)
+        {
+            xml.insertField(this, parent);
         }
     }
 }
