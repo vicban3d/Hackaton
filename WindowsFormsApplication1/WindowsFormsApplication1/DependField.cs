@@ -44,7 +44,7 @@ namespace ProtoShark
 
         public override string getType()
         {
-           return "dependant";
+           return "dependent";
         }
     }
 }

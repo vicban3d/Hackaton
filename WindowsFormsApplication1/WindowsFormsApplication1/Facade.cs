@@ -27,7 +27,7 @@ namespace ProtoShark
             Block data = null;
             foreach (TreeNode t in treeCol[0].Nodes)
             {
-                if (t.Name.Equals("Block"))
+                if (t.Name.Equals("block"))
                 {
                     data = prot.createBlock(t.Text, t.ImageKey, t.SelectedImageKey);
                     createProtocol(t.Nodes, data);
@@ -54,7 +54,7 @@ namespace ProtoShark
             Block temp = null;
             foreach (TreeNode t in tree)
             {
-                if (t.Name.Equals("Block"))
+                if (t.Name.Equals("block"))
                 {
                     temp = data.addBlock(t.Text, t.ImageKey, t.SelectedImageKey);
                     createProtocol(t.Nodes, temp);

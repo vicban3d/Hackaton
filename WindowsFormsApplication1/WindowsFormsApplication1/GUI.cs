@@ -20,7 +20,7 @@ namespace ProtoShark
         private bool createMode = false;
         private static Size nodeSize = new Size(180, 20);
         private static Size nodeLabelSize = new Size(200, 20);
-        private static String PROTOCOLS_FILE_PATH = "C:\\Users\\gavrielg\\Desktop\\Tasks";
+        private static String PROTOCOLS_FILE_PATH = "\\\\docman\\docman\\ProtoShark";
 
         private static int initialHeight = -20;
         private static int initialLeft = -100;
@@ -32,6 +32,11 @@ namespace ProtoShark
         private Protocol protocol;
 
         public GUI()
+        {
+            init();
+        }
+
+        private void init()
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             InitializeComponent();
@@ -54,12 +59,6 @@ namespace ProtoShark
             p_newlayers.Hide();
             p_add_new_data.Hide();
             p_keys.Hide();
-
-
-
-
-
-
         }
 
         private void drawData(LinkedList<Data> data)
@@ -78,7 +77,7 @@ namespace ProtoShark
 
         private void fillProtocolList()
         {
-            // Should read head XML file and fill in protocol names.
+            cb_protocolsList.Items.Clear();
             DirectoryInfo dir = Directory.CreateDirectory(PROTOCOLS_FILE_PATH);
             foreach (FileInfo file in dir.EnumerateFiles())
             {
@@ -107,6 +106,7 @@ namespace ProtoShark
             conditionLabel.Text = " -? " + data.getCondition();
             conditionLabel.Size = nodeLabelSize;
             conditionLabel.Location = new Point(nodeSize.Width + initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
+            conditionLabel.Font = new Font("Arial", 10, FontStyle.Bold);
             p_view.Controls.Add(conditionLabel);
             structureDepth++;
             foreach (Data child in data.getChildren())
@@ -170,7 +170,7 @@ namespace ProtoShark
         }
         public void drawData(DependField data)
         {
-            createLabel(data.getName() + " (" + data.getInfo() + ")", data.getDescription() + "\r\n\r\nThis field may or may not appear depending on " + data.getInfo() + " field.\r\n");
+            createLabel(data.getName() + " (" + data.getInfo() + ")", data.getDescription() + "\r\n\r\nThe length of this field depends on the value of \'" + data.getInfo() + "\' field.\r\n");
         }
 
         private void createLabel(String content, String description)
@@ -381,6 +381,7 @@ namespace ProtoShark
                 foreach (DataGridViewRow row in keys_table.Rows)
                 {
                     keys += row.Cells[0].Value + ":" + row.Cells[1].Value + ";";
+                    keys = keys.Substring(0, keys.Length - 2);
                 }
 
                 string name = t_data_name.Text;
@@ -405,6 +406,9 @@ namespace ProtoShark
         private void button1_Click(object sender, EventArgs e)
         {
             Facade.createProtocol(tv);
+           // init();
+            fillProtocolList();
+            
         }
     }
 

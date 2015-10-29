@@ -69,8 +69,8 @@ namespace ProtoShark
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.p_keys = new System.Windows.Forms.Panel();
             this.keys_table = new System.Windows.Forms.DataGridView();
-            this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.key = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.b_add_with_keys = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.p_menu.SuspendLayout();
@@ -436,26 +436,26 @@ namespace ProtoShark
             this.keys_table.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.keys_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.keys_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Key,
-            this.Description});
+            this.key,
+            this.description});
             this.keys_table.Location = new System.Drawing.Point(6, 8);
             this.keys_table.Name = "keys_table";
             this.keys_table.Size = new System.Drawing.Size(491, 520);
             this.keys_table.TabIndex = 19;
             // 
-            // Key
+            // key
             // 
-            this.Key.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Key.FillWeight = 30F;
-            this.Key.HeaderText = "key";
-            this.Key.Name = "key";
+            this.key.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.key.FillWeight = 30F;
+            this.key.HeaderText = "key";
+            this.key.Name = "key";
             // 
-            // Description
+            // description
             // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Description.FillWeight = 70F;
-            this.Description.HeaderText = "description";
-            this.Description.Name = "description";
+            this.description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.description.FillWeight = 70F;
+            this.description.HeaderText = "description";
+            this.description.Name = "description";
             // 
             // b_add_with_keys
             // 
@@ -558,6 +558,8 @@ namespace ProtoShark
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.Button b_done;
+        private System.Windows.Forms.DataGridViewTextBoxColumn key;
+        private System.Windows.Forms.DataGridViewTextBoxColumn description;
     }
 }
 
