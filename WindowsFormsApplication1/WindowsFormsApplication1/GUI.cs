@@ -109,7 +109,7 @@ namespace ProtoShark
             conditionLabel.Text = "  x " + data.getNumOfRepetitions();
             conditionLabel.Size = nodeLabelSize;
             conditionLabel.Location = new Point(nodeSize.Width + initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
-            conditionLabel.Font = new Font("Arial", 8, FontStyle.Bold);
+            conditionLabel.Font = new Font("Arial", 10, FontStyle.Bold);
             p_view.Controls.Add(conditionLabel);
             drawData(data.getChildren());
             structureDepth--;
@@ -261,7 +261,7 @@ namespace ProtoShark
             "Delimited",
             "Fixed",
             "Multi" ,
-             "Dependant"});
+             "dependent"});
              this.t_data_minorType.Sorted = true;
              this.l_data_desc.Text = "Description";
              this.t_data_desc.Show();

@@ -184,7 +184,7 @@ namespace ProtoShark
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.ForeColor = System.Drawing.Color.Yellow;
             this.label1.Location = new System.Drawing.Point(1040, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 20);
@@ -305,9 +305,9 @@ namespace ProtoShark
             // 
             // l_protocolDesc
             // 
-            this.l_protocolDesc.Location = new System.Drawing.Point(359, 15);
+            this.l_protocolDesc.Location = new System.Drawing.Point(315, 15);
             this.l_protocolDesc.Name = "l_protocolDesc";
-            this.l_protocolDesc.Size = new System.Drawing.Size(364, 36);
+            this.l_protocolDesc.Size = new System.Drawing.Size(408, 36);
             this.l_protocolDesc.TabIndex = 7;
             // 
             // p_add_new_data
@@ -418,6 +418,7 @@ namespace ProtoShark
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1255, 786);
             this.Controls.Add(this.p_add_new_data);
             this.Controls.Add(this.l_protocolDesc);
