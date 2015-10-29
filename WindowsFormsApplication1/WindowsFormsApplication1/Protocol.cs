@@ -42,6 +42,7 @@ namespace ProtoShark
             if (type.Equals("repeating")) newBlock = new RepeatingBlock(name, info);
             else if (type.Equals("single")) newBlock = new SingleBlock(name, info);
             else if (type.Equals("optional")) newBlock = new OptionalBlock(name, info);
+            else if (type.Equals("dependent")) newBlock = new DependBlock(name, info);
             else return null;
             data.AddLast(newBlock);
             return newBlock;
@@ -52,7 +53,7 @@ namespace ProtoShark
             Field newField;
             if (type.Equals("fixed")) newField = new FixedField(name, info, description);
             else if (type.Equals("delimited")) newField = new DelimField(name, info, description);
-            else if (type.Equals("dependant")) newField = new DependField(name, info, description);
+            else if (type.Equals("dependent")) newField = new DependField(name, info, description);
             else if (type.Equals("multi")) newField = new MultiField(name, info, description);
             else return null;
             data.AddLast(newField);
