@@ -39,7 +39,7 @@ namespace ProtoShark
 
         }
 
-        public void inesrtField(Field field, XmlElement parent)
+        public void insertField(Field field, XmlElement parent)
         {
             XmlElement fieldNode = doc.CreateElement("field");
             fieldNode.SetAttribute("name", field.getName());

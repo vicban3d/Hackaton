@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ProtoShark
 {
@@ -18,6 +19,10 @@ namespace ProtoShark
             this.numOfRepetition = info;
             this.name = name;
             this.data = new LinkedList<Data>();
+        }
+        public override void insertData(XMLCreator xml, XmlElement parent)
+        {
+            xml.insertBlock(this, parent);
         }
         public override void drawData(GUI gui)
         {
