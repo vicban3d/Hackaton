@@ -46,7 +46,6 @@ namespace ProtoShark
             this.tb_desc = new System.Windows.Forms.TextBox();
             this.p_create = new System.Windows.Forms.Panel();
             this.p_newlayers = new System.Windows.Forms.Panel();
-            this.b_add_data = new System.Windows.Forms.Button();
             this.p_newprotocol = new System.Windows.Forms.Panel();
             this.tb_title = new System.Windows.Forms.TextBox();
             this.l_description = new System.Windows.Forms.Label();
@@ -67,11 +66,9 @@ namespace ProtoShark
             this.t_data_name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.t_data_desc = new System.Windows.Forms.TextBox();
-            this.tv_data_tree = new System.Windows.Forms.TreeView();
             this.p_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.p_create.SuspendLayout();
-            this.p_newlayers.SuspendLayout();
             this.p_newprotocol.SuspendLayout();
             this.p_add_new_data.SuspendLayout();
             this.SuspendLayout();
@@ -213,24 +210,10 @@ namespace ProtoShark
             // p_newlayers
             // 
             this.p_newlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.p_newlayers.Controls.Add(this.tv_data_tree);
-            this.p_newlayers.Controls.Add(this.b_add_data);
             this.p_newlayers.Location = new System.Drawing.Point(4, 4);
             this.p_newlayers.Name = "p_newlayers";
             this.p_newlayers.Size = new System.Drawing.Size(530, 711);
             this.p_newlayers.TabIndex = 9;
-            // 
-            // b_add_data
-            // 
-            this.b_add_data.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("b_add_data.BackgroundImage")));
-            this.b_add_data.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.b_add_data.Location = new System.Drawing.Point(4, 5);
-            this.b_add_data.Name = "b_add_data";
-            this.b_add_data.Size = new System.Drawing.Size(41, 39);
-            this.b_add_data.TabIndex = 0;
-            this.b_add_data.Tag = "1";
-            this.b_add_data.UseVisualStyleBackColor = true;
-            this.b_add_data.Click += new System.EventHandler(this.b_add_data_Click);
             // 
             // p_newprotocol
             // 
@@ -416,13 +399,6 @@ namespace ProtoShark
             this.t_data_desc.Size = new System.Drawing.Size(259, 83);
             this.t_data_desc.TabIndex = 18;
             // 
-            // tv_data_tree
-            // 
-            this.tv_data_tree.Location = new System.Drawing.Point(-1, -1);
-            this.tv_data_tree.Name = "tv_data_tree";
-            this.tv_data_tree.Size = new System.Drawing.Size(528, 577);
-            this.tv_data_tree.TabIndex = 1;
-            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -447,7 +423,6 @@ namespace ProtoShark
             this.p_menu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.p_create.ResumeLayout(false);
-            this.p_newlayers.ResumeLayout(false);
             this.p_newprotocol.ResumeLayout(false);
             this.p_newprotocol.PerformLayout();
             this.p_add_new_data.ResumeLayout(false);
@@ -482,7 +457,6 @@ namespace ProtoShark
         private System.Windows.Forms.TextBox tb_description;
         private System.Windows.Forms.Panel p_newprotocol;
         private System.Windows.Forms.Panel p_newlayers;
-        private System.Windows.Forms.Button b_add_data;
         private System.Windows.Forms.Panel p_add_new_data;
         private System.Windows.Forms.TextBox t_data_info;
         private System.Windows.Forms.Label label6;
@@ -495,7 +469,6 @@ namespace ProtoShark
         private System.Windows.Forms.TextBox t_data_desc;
         private System.Windows.Forms.TextBox t_data_name;
         private System.Windows.Forms.ComboBox t_data_majorType;
-        private System.Windows.Forms.TreeView tv_data_tree;
     }
 }
 
