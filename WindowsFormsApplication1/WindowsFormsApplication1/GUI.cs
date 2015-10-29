@@ -15,7 +15,7 @@ namespace ProtoShark
 {
     partial class GUI : Form
     {
-
+        private TreeView tv;
         private bool editMode = false;
         private bool createMode = false;
         private static Size nodeSize = new Size(180, 20);
@@ -53,6 +53,13 @@ namespace ProtoShark
             p_create.Hide();
             p_newlayers.Hide();
             p_add_new_data.Hide();
+            p_keys.Hide();
+
+
+
+
+
+
         }
 
         private void drawData(LinkedList<Data> data)
@@ -173,10 +180,10 @@ namespace ProtoShark
             dataLabel.BorderStyle = BorderStyle.FixedSingle;
             dataLabel.AutoSize = false;
             dataLabel.Font = new Font("Arial", 10, FontStyle.Bold);
-          
+
             dataLabel.Text = content;
-            
-            
+
+
             dataLabel.Size = nodeSize;
             dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
             dataLabel.Click += (x, y) => clickHandler(description);
@@ -188,17 +195,17 @@ namespace ProtoShark
             {
                 p_newlayers.Controls.Add(dataLabel);
             }
-            
+
         }
 
-        
+
 
         private void clickHandler(String description)
         {
             tb_desc.Text = description;
             tb_desc.Focus();
             tb_desc.DeselectAll();
-        }       
+        }
 
         private void resetView()
         {
@@ -220,7 +227,7 @@ namespace ProtoShark
             structureIndex = 1;
             structureDepth = 1;
             tb_desc.Text = "";
-            p_view.Show(); 
+            p_view.Show();
             p_create.Hide();
             p_newprotocol.Hide();
             p_newlayers.Hide();
@@ -251,29 +258,39 @@ namespace ProtoShark
             l_protocolName.Text = "Create New Protocol";
             l_protocolDesc.Text = "";
             link_source.Text = "";
-
             p_view.Hide();
             p_create.Show();
             p_newprotocol.Show();
             p_add_new_data.Hide();
-       
-            
+
+
 
         }
+
+        private void treeFocusHandler()
+        {
+            tv.SelectedNode.BackColor = Color.Red;
+        }
+
         private void b_save_Click(object sender, EventArgs e)
         {
             protocol = new Protocol(tb_title.Text, tb_source.Text, tb_description.Text);
+
+            tv = new TreeView();
+            tv.Size = p_newlayers.Size;
+            tv.Location = p_newlayers.Location;
+            tv.HideSelection = false;
+            MessageBox.Show(protocol.getName() + " " + tb_title.Text);
+            tv.Nodes.Add("Block", protocol.getName(), protocol.getSource(), protocol.getDescription());
+            tv.SelectedNode = tv.Nodes[0];
+            p_newlayers.Controls.Add(tv);
+
+
             p_newprotocol.Hide();
             p_newlayers.Show();
             l_protocolName.Text = protocol.getName();
             l_protocolDesc.Text = protocol.getDescription();
-            p_add_new_data.Hide();
-        }
-
-        private void b_add_data_Click(object sender, EventArgs e)
-        {
             p_add_new_data.Show();
-            structureDepth = Int32.Parse(((Button)(sender)).Tag + "");
         }
 
         private void t_data_majorType_SelectedIndexChanged(object sender, EventArgs e)
@@ -281,36 +298,32 @@ namespace ProtoShark
             string majorTypeSelected = t_data_majorType.Text;
             if (majorTypeSelected == "Field")
             {
-             this.t_data_minorType.Items.Clear();
+                this.t_data_minorType.Items.Clear();
 
-             this.t_data_minorType.Items.AddRange(new object[] {
-            "Delimited",
-            "Fixed",
-            "Multi" ,
+                this.t_data_minorType.Items.AddRange(new object[] {
+            "delimited",
+            "fixed",
+            "multi" ,
              "dependent"});
-             this.t_data_minorType.Sorted = true;
-             this.l_data_desc.Text = "Description";
-             this.t_data_desc.Show();
+                this.t_data_minorType.Sorted = true;
+                this.l_data_desc.Text = "Description";
+                this.t_data_desc.Show();
             }
 
             else if (majorTypeSelected == "Block")
             {
                 this.t_data_minorType.Items.Clear();
                 this.t_data_minorType.Items.AddRange(new object[] {
-                "Repeating",
-                "Single",
-                "Optional"});
+                "repeating",
+                "single",
+                "optional"});
                 this.t_data_minorType.Sorted = true;
                 this.l_data_desc.Text = "";
                 this.t_data_desc.Hide();
             }
 
         }
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
+ 
         private void b_add_data_filled_Click(object sender, EventArgs e)
         {
             string name = t_data_name.Text;
@@ -321,52 +334,68 @@ namespace ProtoShark
             t_data_minorType.Text = "";
             string info = t_data_info.Text;
             t_data_info.Text = "";
+            string desc = t_data_desc.Text;
+            t_data_desc.Text = "";
 
 
-            if (majorType == "Block")
+            if (tv.SelectedNode.Name == "Block")
             {
-                dataStack = new Stack();
+                if (majorType == "Block")
+                {
+                    tv.SelectedNode.Nodes.Add(majorType, name, minorType, info);
+                }
+                else if (majorType == "Field")
+                {
+                    tv.SelectedNode.Nodes.Add(minorType, name, info, desc);
 
-                Data newBlock = protocol.createBlock(name, minorType, info);
-                b_add_data.Hide();
-                newBlock.drawData(this);
-                Button plus = new Button();
-                System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
-                plus.BackgroundImage = Image.FromFile("C:\\Users\\victorb\\Documents\\GitHubVisualStudio\\Hackaton\\WindowsFormsApplication1\\WindowsFormsApplication1\\plus.png");
-                plus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-                plus.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 4 + nodeSize.Width, initialHeight + (structureIndex - 1) * nodeSize.Height);
-                plus.Name = "b_add_data";
-                plus.Size = new System.Drawing.Size(20, 20);
-                plus.TabIndex = 0;
-                plus.Tag = (structureDepth + 1).ToString();
-                plus.UseVisualStyleBackColor = true;
-                plus.Click += new System.EventHandler(this.b_add_data_Click);
-                p_newlayers.Controls.Add(plus);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Cannot append to selected field.");
+            }
+        }
+
+        private void t_data_minorType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string minorTypeSelected = t_data_minorType.Text;
+            if (minorTypeSelected == "multi")
+            {
+                p_keys.Show();
+                b_add_data_filled.Hide();
+            }
+            else
+            {
+                p_keys.Hide();
+                b_add_data_filled.Show();
+            }
+        }
+
+        private void b_add_with_keys_Click(object sender, EventArgs e)
+        {
+            if (tv.SelectedNode.Name == "Block")
+            {
+                string keys = "";
+                foreach (DataGridViewRow row in keys_table.Rows)
+                {
+                    keys += row.Cells[0].Value + ":" + row.Cells[1].Value + ";";
+                }
+
+                string name = t_data_name.Text;
+                t_data_name.Text = "";
+                string majorType = t_data_majorType.Text;
+                t_data_majorType.Text = "";
+                string minorType = t_data_minorType.Text.ToLower();
+                t_data_minorType.Text = "";
+                string info = t_data_info.Text;
+                t_data_info.Text = "";
+                string desc = t_data_desc.Text;
+                t_data_desc.Text = "";
+
+                tv.SelectedNode.Nodes.Add(minorType, name, keys, desc);
 
             }
-            else if(majorType == "Field")
-            {
-                string description = t_data_desc.Text;
-                Data newField = protocol.createField(name, minorType, info, description);
-                Console.WriteLine(newField.getName());
-                b_add_data.Hide();
-                newField.drawData(this);
-                Button key = new Button();
-                System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
-                key.BackgroundImage = Image.FromFile("C:\\Users\\victorb\\Documents\\GitHubVisualStudio\\Hackaton\\WindowsFormsApplication1\\WindowsFormsApplication1\\key.png");
-                key.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-                key.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3 + nodeSize.Width, initialHeight + structureIndex * nodeSize.Height);
-                key.Name = "b_add_data";
-                key.Size = new System.Drawing.Size(20, 20);
-                key.TabIndex = 0;
-                key.Tag = (structureDepth + 1).ToString();
-                key.UseVisualStyleBackColor = true;
-                key.Click += new System.EventHandler(this.b_add_data_Click);
-                p_newlayers.Controls.Add(key);
 
-            }
-            
-            p_add_new_data.Hide();
         }
     }
 
