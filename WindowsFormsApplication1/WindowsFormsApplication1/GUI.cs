@@ -22,8 +22,8 @@ namespace ProtoShark
         private static Size nodeLabelSize = new Size(200, 20);
         private static String PROTOCOLS_FILE_PATH = "\\\\docman\\docman\\ProtoShark";
 
-        private static int initialHeight = 0;
-        private static int initialLeft = 0;
+        private static int initialHeight = -20;
+        private static int initialLeft = -100;
         private Stack dataStack;
 
         private int structureIndex;
@@ -64,9 +64,8 @@ namespace ProtoShark
                 {
                     structureIndex++;
                     child.drawData(this);
+                    structureIndex++;
                 }
-                structureIndex++;
-
             }
         }
 
@@ -84,7 +83,12 @@ namespace ProtoShark
         public void drawData(SingleBlock data)
         {
             createLabel(data.getName(), "A block that appears only once.");
-            drawData(data.getChildren());
+            structureDepth++;
+            foreach (Data child in data.getChildren())
+            {
+                structureIndex++;
+                child.drawData(this);
+            }
             structureDepth--;
         }
 
@@ -97,7 +101,12 @@ namespace ProtoShark
             conditionLabel.Size = nodeLabelSize;
             conditionLabel.Location = new Point(nodeSize.Width + initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
             p_view.Controls.Add(conditionLabel);
-            drawData(data.getChildren());
+            structureDepth++;
+            foreach (Data child in data.getChildren())
+            {
+                structureIndex++;
+                child.drawData(this);
+            }
             structureDepth--;
         }
 
@@ -111,7 +120,24 @@ namespace ProtoShark
             conditionLabel.Location = new Point(nodeSize.Width + initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
             conditionLabel.Font = new Font("Arial", 10, FontStyle.Bold);
             p_view.Controls.Add(conditionLabel);
-            drawData(data.getChildren());
+            structureDepth++;
+            foreach (Data child in data.getChildren())
+            {
+                structureIndex++;
+                child.drawData(this);
+            }
+            structureDepth--;
+        }
+
+        public void drawData(DependBlock data)
+        {
+            createLabel(data.getName() + " (" + data.getInfoName() + ")", data.getInfo() + "\r\n\r\nThis field may or may not appear depending on " + data.getInfoName() + " field.\r\n");
+            structureDepth++;
+            foreach (Data child in data.getChildren())
+            {
+                structureIndex++;
+                child.drawData(this);
+            }
             structureDepth--;
         }
 
@@ -308,7 +334,7 @@ namespace ProtoShark
                 System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
                 plus.BackgroundImage = Image.FromFile("C:\\Users\\victorb\\Documents\\GitHubVisualStudio\\Hackaton\\WindowsFormsApplication1\\WindowsFormsApplication1\\plus.png");
                 plus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-                plus.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3 + nodeSize.Width, initialHeight + (structureIndex - 1) * nodeSize.Height);
+                plus.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 4 + nodeSize.Width, initialHeight + (structureIndex - 1) * nodeSize.Height);
                 plus.Name = "b_add_data";
                 plus.Size = new System.Drawing.Size(20, 20);
                 plus.TabIndex = 0;
