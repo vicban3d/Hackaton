@@ -13,5 +13,10 @@ namespace ProtoShark
             XMLParser parser = new XMLParser();
             return parser.parse(path);
         }
+        public static void createXML(Protocol prot)
+        {
+            XMLCreator creator = new XMLCreator();
+            creator.create(prot);
+        }
     }
 }

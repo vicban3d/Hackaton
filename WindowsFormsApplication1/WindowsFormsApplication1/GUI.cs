@@ -352,7 +352,7 @@ namespace ProtoShark
                     
                     if (tv.SelectedNode == null)
                     {
-                        tv.Nodes.Add(minorType, name, info);
+                        tv.Nodes.Add(minorType, name, info, t_data_desc.Text);
                     }
                     else
                     {
