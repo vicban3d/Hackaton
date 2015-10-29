@@ -88,8 +88,8 @@ namespace ProtoShark
             // 
             this.t_data_majorType.FormattingEnabled = true;
             this.t_data_majorType.Items.AddRange(new object[] {
-            "Block",
-            "Field"});
+            "block",
+            "field"});
             this.t_data_majorType.Location = new System.Drawing.Point(69, 32);
             this.t_data_majorType.Name = "t_data_majorType";
             this.t_data_majorType.Size = new System.Drawing.Size(162, 21);
@@ -180,6 +180,7 @@ namespace ProtoShark
             // 
             // tb_desc
             // 
+            this.tb_desc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_desc.Location = new System.Drawing.Point(730, 54);
             this.tb_desc.Multiline = true;
             this.tb_desc.Name = "tb_desc";
@@ -446,15 +447,15 @@ namespace ProtoShark
             // 
             this.Key.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Key.FillWeight = 30F;
-            this.Key.HeaderText = "Key";
-            this.Key.Name = "Key";
+            this.Key.HeaderText = "key";
+            this.Key.Name = "key";
             // 
             // Description
             // 
             this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Description.FillWeight = 70F;
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
+            this.Description.HeaderText = "description";
+            this.Description.Name = "description";
             // 
             // b_add_with_keys
             // 

@@ -232,6 +232,8 @@ namespace ProtoShark
             p_newprotocol.Hide();
             p_newlayers.Hide();
             p_add_new_data.Hide();
+            tb_desc.Show();
+            l_notes.Show();
             if (cb_protocolsList.Items.Contains(cb_protocolsList.Text))
             {
                 String filepath = PROTOCOLS_FILE_PATH + "\\" + cb_protocolsList.Text + ".xml";
@@ -262,6 +264,8 @@ namespace ProtoShark
             p_create.Show();
             p_newprotocol.Show();
             p_add_new_data.Hide();
+            tb_desc.Hide();
+            l_notes.Hide();
         }
 
         private void treeFocusHandler()
@@ -277,7 +281,7 @@ namespace ProtoShark
             tv.Size = p_newlayers.Size;
             tv.Location = p_newlayers.Location;
             tv.HideSelection = false;
-            tv.Nodes.Add("Block", protocol.getName(), protocol.getSource(), protocol.getDescription());
+            tv.Nodes.Add("block", protocol.getName(), protocol.getSource(), protocol.getDescription());
             tv.SelectedNode = tv.Nodes[0];
             tv.BackColor = SystemColors.ActiveCaption;
             tv.BorderStyle = BorderStyle.Fixed3D;
@@ -294,7 +298,7 @@ namespace ProtoShark
         private void t_data_majorType_SelectedIndexChanged(object sender, EventArgs e)
         {
             string majorTypeSelected = t_data_majorType.Text;
-            if (majorTypeSelected == "Field")
+            if (majorTypeSelected == "field")
             {
                 this.t_data_minorType.Items.Clear();
 
@@ -304,11 +308,11 @@ namespace ProtoShark
             "multi" ,
              "dependent"});
                 this.t_data_minorType.Sorted = true;
-                this.l_data_desc.Text = "Description";
+                this.l_data_desc.Text = "description";
                 this.t_data_desc.Show();
             }
 
-            else if (majorTypeSelected == "Block")
+            else if (majorTypeSelected == "block")
             {
                 this.t_data_minorType.Items.Clear();
                 this.t_data_minorType.Items.AddRange(new object[] {
@@ -336,13 +340,13 @@ namespace ProtoShark
             t_data_desc.Text = "";
 
 
-            if (tv.SelectedNode.Name == "Block")
+            if (tv.SelectedNode.Name == "block")
             {
-                if (majorType == "Block")
+                if (majorType == "block")
                 {
                     tv.SelectedNode.Nodes.Add(majorType, name, minorType, info);
                 }
-                else if (majorType == "Field")
+                else if (majorType == "field")
                 {
                     tv.SelectedNode.Nodes.Add(minorType, name, info, desc);
 
@@ -371,7 +375,7 @@ namespace ProtoShark
 
         private void b_add_with_keys_Click(object sender, EventArgs e)
         {
-            if (tv.SelectedNode.Name == "Block")
+            if (tv.SelectedNode.Name == "block")
             {
                 string keys = "";
                 foreach (DataGridViewRow row in keys_table.Rows)
