@@ -397,6 +397,11 @@ namespace ProtoShark
             }
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Facade.createProtocol(tv);
+        }
     }
 
 

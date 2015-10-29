@@ -10,9 +10,10 @@ namespace ProtoShark
 
         public void create(Protocol protocol)
         {
-            String path = "C:\\Users\\noaav\\Desktop\\Hackaton\\" + protocol.getName();
+            string path = "\\\\docman\\docman\\ProtoShark\\" + protocol.getName()+ ".xml";
             doc = new XmlDocument();
-            XmlElement productNode = doc.CreateElement("protocol");
+
+            XmlElement productNode = doc.CreateElement("root");
             productNode.SetAttribute("name", protocol.getName());
             productNode.SetAttribute("source", protocol.getSource());
             productNode.SetAttribute("description", protocol.getDescription());

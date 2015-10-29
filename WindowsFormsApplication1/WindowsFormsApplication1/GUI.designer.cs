@@ -68,10 +68,11 @@ namespace ProtoShark
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.p_keys = new System.Windows.Forms.Panel();
             this.keys_table = new System.Windows.Forms.DataGridView();
-            this.b_add_with_keys = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_add_with_keys = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.p_menu.SuspendLayout();
             this.p_create.SuspendLayout();
             this.p_newprotocol.SuspendLayout();
@@ -428,6 +429,20 @@ namespace ProtoShark
             this.keys_table.Size = new System.Drawing.Size(491, 520);
             this.keys_table.TabIndex = 19;
             // 
+            // Key
+            // 
+            this.Key.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Key.FillWeight = 30F;
+            this.Key.HeaderText = "Key";
+            this.Key.Name = "Key";
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Description.FillWeight = 70F;
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
+            // 
             // b_add_with_keys
             // 
             this.b_add_with_keys.Location = new System.Drawing.Point(6, 534);
@@ -446,19 +461,15 @@ namespace ProtoShark
             this.label5.Size = new System.Drawing.Size(0, 13);
             this.label5.TabIndex = 15;
             // 
-            // Key
+            // button1
             // 
-            this.Key.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Key.FillWeight = 30F;
-            this.Key.HeaderText = "Key";
-            this.Key.Name = "Key";
-            // 
-            // Description
-            // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Description.FillWeight = 70F;
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
+            this.button1.Location = new System.Drawing.Point(1045, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // GUI
             // 
@@ -466,6 +477,7 @@ namespace ProtoShark
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1255, 786);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.p_keys);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -541,6 +553,7 @@ namespace ProtoShark
         private System.Windows.Forms.DataGridView keys_table;
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.Button button1;
     }
 }
 
