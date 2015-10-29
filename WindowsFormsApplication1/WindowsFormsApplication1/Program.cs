@@ -14,8 +14,6 @@ namespace ProtoShark
         [STAThread]
         static void Main()
         {
-            XMLCreator xml = new XMLCreator();
-            xml.parse("C:\\Users\\noaav\\Desktop\\Hackaton\\HTTP.xml");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GUI());

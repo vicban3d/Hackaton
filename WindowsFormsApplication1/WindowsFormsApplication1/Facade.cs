@@ -10,7 +10,7 @@ namespace ProtoShark
     {
         public static Protocol getProtocolFromXML(String path)
         {
-            XMLCreator parser = new XMLCreator();
+            XMLParser parser = new XMLParser();
             return parser.parse(path);
         }
     }
