@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Block.cs" />
+    <Compile Include="DependBlock.cs" />
     <Compile Include="XMLCreator.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="DelimField.cs" />
