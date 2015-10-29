@@ -10,20 +10,26 @@ namespace ProtoShark
 
         public void create(Protocol protocol)
         {
-            string path = "\\\\docman\\docman\\ProtoShark\\" + protocol.getName()+ ".xml";
+            string path = "C:\\Users\\gavrielg\\Desktop\\Tasks\\" + protocol.getName()+ ".xml";
+
+         
+
             doc = new XmlDocument();
 
-            XmlElement productNode = doc.CreateElement("root");
+
+
+            XmlElement productNode = doc.CreateElement("protocol");
             productNode.SetAttribute("name", protocol.getName());
             productNode.SetAttribute("source", protocol.getSource());
             productNode.SetAttribute("description", protocol.getDescription());
+            doc.AppendChild(productNode);
             LinkedList<Data> data = protocol.getData();
             foreach (Data node in data) { 
                 node.insertData(this,productNode);
             }
 
-            doc.Save(path);
-        
+             doc.Save(path);
+
         }
   
         public void insertBlock(Block block, XmlElement parent)
@@ -48,9 +54,12 @@ namespace ProtoShark
             fieldNode.SetAttribute(field.getInfoName(), field.getInfo());
             fieldNode.SetAttribute("description", field.getDescription());
             parent.AppendChild(fieldNode);
-            foreach(Key child in field.getKeys())
+            if (field.getType().Equals("multi"))
             {
-                insertKey(child, fieldNode);
+                foreach (Key child in field.getKeys())
+                {
+                    insertKey(child, fieldNode);
+                }
             }
         }
 
