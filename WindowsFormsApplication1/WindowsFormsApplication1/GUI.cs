@@ -107,6 +107,7 @@ namespace ProtoShark
             conditionLabel.Text = " -? " + data.getCondition();
             conditionLabel.Size = nodeLabelSize;
             conditionLabel.Location = new Point(nodeSize.Width + initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
+            conditionLabel.Font = new Font("Arial", 10, FontStyle.Bold);
             p_view.Controls.Add(conditionLabel);
             structureDepth++;
             foreach (Data child in data.getChildren())
@@ -223,6 +224,9 @@ namespace ProtoShark
         private void b_show_Click(object sender, EventArgs e)
         {
             createMode = false;
+            tb_desc.Show();
+            l_notes.Show();
+            l_protocolName.Text = "";
             p_view.Controls.Clear();
             structureIndex = 1;
             structureDepth = 1;
@@ -262,7 +266,8 @@ namespace ProtoShark
             p_create.Show();
             p_newprotocol.Show();
             p_add_new_data.Hide();
-
+            tb_desc.Hide();
+            l_notes.Hide();
 
 
         }
@@ -280,9 +285,9 @@ namespace ProtoShark
             tv.Size = p_newlayers.Size;
             tv.Location = p_newlayers.Location;
             tv.HideSelection = false;
-            MessageBox.Show(protocol.getName() + " " + tb_title.Text);
             tv.Nodes.Add("Block", protocol.getName(), protocol.getSource(), protocol.getDescription());
             tv.SelectedNode = tv.Nodes[0];
+            tv.BackColor = Color.AliceBlue;
             p_newlayers.Controls.Add(tv);
 
 
@@ -395,6 +400,11 @@ namespace ProtoShark
                 tv.SelectedNode.Nodes.Add(minorType, name, keys, desc);
 
             }
+
+        }
+
+        private void b_done_Click(object sender, EventArgs e)
+        {
 
         }
     }
