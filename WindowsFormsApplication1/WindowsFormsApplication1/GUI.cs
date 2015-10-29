@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProtoShark;
 using System.IO;
+using System.Collections;
 
 namespace ProtoShark
 {
@@ -17,17 +18,18 @@ namespace ProtoShark
 
         private bool editMode = false;
         private bool createMode = false;
-        private static Size nodeSize = new Size(200, 20);
+        private static Size nodeSize = new Size(180, 20);
         private static Size nodeLabelSize = new Size(200, 20);
         private static String PROTOCOLS_FILE_PATH = "\\\\docman\\docman\\ProtoShark";
 
         private static int initialHeight = 0;
         private static int initialLeft = 0;
-
+        private Stack dataStack;
 
         private int structureIndex;
         private int structureDepth;
 
+        private Protocol protocol;
 
         public GUI()
         {
@@ -48,12 +50,9 @@ namespace ProtoShark
             tb_desc.ReadOnly = true;
             tb_desc.WordWrap = true;
 
-            b_save.Hide();
-
-
-
-
-
+            p_create.Hide();
+            p_newlayers.Hide();
+            p_add_new_data.Hide();
         }
 
         private void drawData(LinkedList<Data> data)
@@ -110,6 +109,7 @@ namespace ProtoShark
             conditionLabel.Text = "  x " + data.getNumOfRepetitions();
             conditionLabel.Size = nodeLabelSize;
             conditionLabel.Location = new Point(nodeSize.Width + initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
+            conditionLabel.Font = new Font("Arial", 8, FontStyle.Bold);
             p_view.Controls.Add(conditionLabel);
             drawData(data.getChildren());
             structureDepth--;
@@ -142,24 +142,26 @@ namespace ProtoShark
 
         private void createLabel(String content, String description)
         {
-            TextBox dataLabel = new TextBox();
+            Label dataLabel = new Label();
             dataLabel.BackColor = Color.White;
-            dataLabel.BorderStyle = BorderStyle.Fixed3D;
+            dataLabel.BorderStyle = BorderStyle.FixedSingle;
             dataLabel.AutoSize = false;
-            if (!createMode) { 
+            dataLabel.Font = new Font("Arial", 10, FontStyle.Bold);
+          
             dataLabel.Text = content;
-            } 
-            else
-            {
-                dataLabel.Text = "";
-            }
+            
+            
             dataLabel.Size = nodeSize;
             dataLabel.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3, initialHeight + structureIndex * nodeSize.Height);
-            dataLabel.ReadOnly = !editMode;
-
             dataLabel.Click += (x, y) => clickHandler(description);
-            
-            p_view.Controls.Add(dataLabel);
+            if (!createMode)
+            {
+                p_view.Controls.Add(dataLabel);
+            }
+            else
+            {
+                p_newlayers.Controls.Add(dataLabel);
+            }
             
         }
 
@@ -168,14 +170,9 @@ namespace ProtoShark
         private void clickHandler(String description)
         {
             tb_desc.Text = description;
-        }
-
-        private void editHandler(String name, String info, String description)
-        {
-            MessageBox.Show(name + " " + info + " " + description);
-        }
-
-       
+            tb_desc.Focus();
+            tb_desc.DeselectAll();
+        }       
 
         private void resetView()
         {
@@ -192,45 +189,25 @@ namespace ProtoShark
 
         private void b_show_Click(object sender, EventArgs e)
         {
-            editMode = false;
             createMode = false;
-            b_save.Hide();
             p_view.Controls.Clear();
             structureIndex = 1;
             structureDepth = 1;
             tb_desc.Text = "";
+            p_view.Show(); 
+            p_create.Hide();
+            p_newprotocol.Hide();
+            p_newlayers.Hide();
+            p_add_new_data.Hide();
             if (cb_protocolsList.Items.Contains(cb_protocolsList.Text))
             {
                 String filepath = PROTOCOLS_FILE_PATH + "\\" + cb_protocolsList.Text + ".xml";
-                Protocol p = Facade.getProtocolFromXML(filepath);
-                link_source.Text = p.getSource();
-                LinkedList<Data> protocolData = p.getData();
+                protocol = Facade.getProtocolFromXML(filepath);
+                link_source.Text = "Source";
+                LinkedList<Data> protocolData = protocol.getData();
                 drawData(protocolData);
                 l_protocolName.Text = cb_protocolsList.Text;
-            }
-            else
-            {
-                resetView();
-            }
-        }
-
-        private void b_edit_Click(object sender, EventArgs e)
-        {
-            editMode = true;
-            createMode = false;
-            b_save.Show();
-            p_view.Controls.Clear();
-            structureIndex = 1;
-            structureDepth = 1;
-            tb_desc.Text = "";
-            if (cb_protocolsList.Items.Contains(cb_protocolsList.Text))
-            {
-                String filepath = PROTOCOLS_FILE_PATH + "\\" + cb_protocolsList.Text + ".xml";
-                Protocol p = Facade.getProtocolFromXML(filepath);
-                link_source.Text = p.getSource();
-                LinkedList<Data> protocolData = p.getData();
-                drawData(protocolData);
-                l_protocolName.Text = cb_protocolsList.Text;
+                l_protocolDesc.Text = protocol.getDescription();
             }
             else
             {
@@ -240,31 +217,130 @@ namespace ProtoShark
 
         private void b_create_Click(object sender, EventArgs e)
         {
-            editMode = true;
             createMode = true;
-            b_save.Show();
             p_view.Controls.Clear();
             structureIndex = 1;
             structureDepth = 1;
             tb_desc.Text = "";
-            if (cb_protocolsList.Items.Contains(cb_protocolsList.Text))
-            {
-                String filepath = PROTOCOLS_FILE_PATH + "\\" + cb_protocolsList.Text + ".xml";
-                Protocol p = Facade.getProtocolFromXML(filepath);
-                link_source.Text = p.getSource();
-                LinkedList<Data> protocolData = p.getData();
-                drawData(protocolData);
-                l_protocolName.Text = "Create New Protocol";
-            }
-            else
-            {
-                resetView();
-            }
-        }
+            l_protocolName.Text = "Create New Protocol";
+            l_protocolDesc.Text = "";
+            link_source.Text = "";
 
+            p_view.Hide();
+            p_create.Show();
+            p_newprotocol.Show();
+            p_add_new_data.Hide();
+       
+            
+
+        }
         private void b_save_Click(object sender, EventArgs e)
         {
+            protocol = new Protocol(tb_title.Text, tb_source.Text, tb_description.Text);
+            p_newprotocol.Hide();
+            p_newlayers.Show();
+            l_protocolName.Text = protocol.getName();
+            l_protocolDesc.Text = protocol.getDescription();
+            p_add_new_data.Hide();
+        }
 
+        private void b_add_data_Click(object sender, EventArgs e)
+        {
+            p_add_new_data.Show();
+            structureDepth = Int32.Parse(((Button)(sender)).Tag + "");
+        }
+
+        private void t_data_majorType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string majorTypeSelected = t_data_majorType.Text;
+            if (majorTypeSelected == "Field")
+            {
+             this.t_data_minorType.Items.Clear();
+
+             this.t_data_minorType.Items.AddRange(new object[] {
+            "Delimited",
+            "Fixed",
+            "Multi" ,
+             "Dependant"});
+             this.t_data_minorType.Sorted = true;
+             this.l_data_desc.Text = "Description";
+             this.t_data_desc.Show();
+            }
+
+            else if (majorTypeSelected == "Block")
+            {
+                this.t_data_minorType.Items.Clear();
+                this.t_data_minorType.Items.AddRange(new object[] {
+                "Repeating",
+                "Single",
+                "Optional"});
+                this.t_data_minorType.Sorted = true;
+                this.l_data_desc.Text = "";
+                this.t_data_desc.Hide();
+            }
+
+        }
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void b_add_data_filled_Click(object sender, EventArgs e)
+        {
+            string name = t_data_name.Text;
+            t_data_name.Text = "";
+            string majorType = t_data_majorType.Text;
+            t_data_majorType.Text = "";
+            string minorType = t_data_minorType.Text.ToLower();
+            t_data_minorType.Text = "";
+            string info = t_data_info.Text;
+            t_data_info.Text = "";
+
+
+            if (majorType == "Block")
+            {
+                dataStack = new Stack();
+
+                Data newBlock = protocol.createBlock(name, minorType, info);
+                b_add_data.Hide();
+                newBlock.drawData(this);
+                Button plus = new Button();
+                System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
+                plus.BackgroundImage = Image.FromFile("C:\\Users\\victorb\\Documents\\GitHubVisualStudio\\Hackaton\\WindowsFormsApplication1\\WindowsFormsApplication1\\plus.png");
+                plus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                plus.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3 + nodeSize.Width, initialHeight + (structureIndex - 1) * nodeSize.Height);
+                plus.Name = "b_add_data";
+                plus.Size = new System.Drawing.Size(20, 20);
+                plus.TabIndex = 0;
+                plus.Tag = (structureDepth + 1).ToString();
+                plus.UseVisualStyleBackColor = true;
+                plus.Click += new System.EventHandler(this.b_add_data_Click);
+                p_newlayers.Controls.Add(plus);
+
+            }
+            else if(majorType == "Field")
+            {
+                string description = t_data_desc.Text;
+                Data newField = protocol.createField(name, minorType, info, description);
+                Console.WriteLine(newField.getName());
+                b_add_data.Hide();
+                newField.drawData(this);
+                Button key = new Button();
+                System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
+                key.BackgroundImage = Image.FromFile("C:\\Users\\victorb\\Documents\\GitHubVisualStudio\\Hackaton\\WindowsFormsApplication1\\WindowsFormsApplication1\\key.png");
+                key.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                key.Location = new Point(initialLeft + structureDepth * nodeSize.Width / 3 + nodeSize.Width, initialHeight + structureIndex * nodeSize.Height);
+                key.Name = "b_add_data";
+                key.Size = new System.Drawing.Size(20, 20);
+                key.TabIndex = 0;
+                key.Tag = (structureDepth + 1).ToString();
+                key.UseVisualStyleBackColor = true;
+                key.Click += new System.EventHandler(this.b_add_data_Click);
+                p_newlayers.Controls.Add(key);
+
+            }
+            
+            p_add_new_data.Hide();
         }
     }
 

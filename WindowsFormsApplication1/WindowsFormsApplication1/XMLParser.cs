@@ -9,7 +9,7 @@ using System.IO;
 
 namespace ProtoShark
 {
-    class XMLCreator
+    class XMLParser
     {
         public Protocol parse(String path)
         {
