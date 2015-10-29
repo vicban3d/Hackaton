@@ -44,6 +44,7 @@ namespace ProtoShark
             this.tb_desc = new System.Windows.Forms.TextBox();
             this.p_create = new System.Windows.Forms.Panel();
             this.p_newlayers = new System.Windows.Forms.Panel();
+            this.b_done = new System.Windows.Forms.Button();
             this.p_newprotocol = new System.Windows.Forms.Panel();
             this.tb_title = new System.Windows.Forms.TextBox();
             this.l_description = new System.Windows.Forms.Label();
@@ -72,9 +73,9 @@ namespace ProtoShark
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.b_add_with_keys = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.p_menu.SuspendLayout();
             this.p_create.SuspendLayout();
+            this.p_newlayers.SuspendLayout();
             this.p_newprotocol.SuspendLayout();
             this.p_add_new_data.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -198,10 +199,21 @@ namespace ProtoShark
             // p_newlayers
             // 
             this.p_newlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.p_newlayers.Controls.Add(this.b_done);
             this.p_newlayers.Location = new System.Drawing.Point(4, 4);
             this.p_newlayers.Name = "p_newlayers";
             this.p_newlayers.Size = new System.Drawing.Size(530, 711);
             this.p_newlayers.TabIndex = 9;
+            // 
+            // b_done
+            // 
+            this.b_done.Location = new System.Drawing.Point(427, 3);
+            this.b_done.Name = "b_done";
+            this.b_done.Size = new System.Drawing.Size(98, 29);
+            this.b_done.TabIndex = 20;
+            this.b_done.Text = "Done";
+            this.b_done.UseVisualStyleBackColor = true;
+            this.b_done.Click += new System.EventHandler(this.button1_Click);
             // 
             // p_newprotocol
             // 
@@ -420,6 +432,7 @@ namespace ProtoShark
             // 
             // keys_table
             // 
+            this.keys_table.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.keys_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.keys_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Key,
@@ -461,23 +474,13 @@ namespace ProtoShark
             this.label5.Size = new System.Drawing.Size(0, 13);
             this.label5.TabIndex = 15;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1045, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1255, 786);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.l_protocolName);
             this.Controls.Add(this.p_keys);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -485,7 +488,6 @@ namespace ProtoShark
             this.Controls.Add(this.l_protocolDesc);
             this.Controls.Add(this.p_create);
             this.Controls.Add(this.link_source);
-            this.Controls.Add(this.l_protocolName);
             this.Controls.Add(this.l_notes);
             this.Controls.Add(this.p_view);
             this.Controls.Add(this.p_menu);
@@ -496,6 +498,7 @@ namespace ProtoShark
             this.p_menu.ResumeLayout(false);
             this.p_menu.PerformLayout();
             this.p_create.ResumeLayout(false);
+            this.p_newlayers.ResumeLayout(false);
             this.p_newprotocol.ResumeLayout(false);
             this.p_newprotocol.PerformLayout();
             this.p_add_new_data.ResumeLayout(false);
@@ -553,7 +556,7 @@ namespace ProtoShark
         private System.Windows.Forms.DataGridView keys_table;
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button b_done;
     }
 }
 

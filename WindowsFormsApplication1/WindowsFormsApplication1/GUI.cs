@@ -262,9 +262,6 @@ namespace ProtoShark
             p_create.Show();
             p_newprotocol.Show();
             p_add_new_data.Hide();
-
-
-
         }
 
         private void treeFocusHandler()
@@ -280,9 +277,10 @@ namespace ProtoShark
             tv.Size = p_newlayers.Size;
             tv.Location = p_newlayers.Location;
             tv.HideSelection = false;
-            MessageBox.Show(protocol.getName() + " " + tb_title.Text);
             tv.Nodes.Add("Block", protocol.getName(), protocol.getSource(), protocol.getDescription());
             tv.SelectedNode = tv.Nodes[0];
+            tv.BackColor = SystemColors.ActiveCaption;
+            tv.BorderStyle = BorderStyle.Fixed3D;
             p_newlayers.Controls.Add(tv);
 
 
@@ -393,6 +391,8 @@ namespace ProtoShark
                 t_data_desc.Text = "";
 
                 tv.SelectedNode.Nodes.Add(minorType, name, keys, desc);
+
+                keys_table.Columns.Clear();
 
             }
 
