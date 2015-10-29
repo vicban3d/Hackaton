@@ -68,11 +68,11 @@ namespace ProtoShark
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.p_keys = new System.Windows.Forms.Panel();
-            this.b_add_with_keys = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.keys_table = new System.Windows.Forms.DataGridView();
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_add_with_keys = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.p_menu.SuspendLayout();
             this.p_create.SuspendLayout();
             this.p_newlayers.SuspendLayout();
@@ -207,13 +207,13 @@ namespace ProtoShark
             // 
             // b_done
             // 
-            this.b_done.Location = new System.Drawing.Point(426, 3);
+            this.b_done.Location = new System.Drawing.Point(427, 3);
             this.b_done.Name = "b_done";
-            this.b_done.Size = new System.Drawing.Size(99, 30);
-            this.b_done.TabIndex = 5;
+            this.b_done.Size = new System.Drawing.Size(98, 29);
+            this.b_done.TabIndex = 20;
             this.b_done.Text = "Done";
             this.b_done.UseVisualStyleBackColor = true;
-            this.b_done.Click += new System.EventHandler(this.b_done_Click);
+            this.b_done.Click += new System.EventHandler(this.button1_Click);
             // 
             // p_newprotocol
             // 
@@ -422,35 +422,17 @@ namespace ProtoShark
             // p_keys
             // 
             this.p_keys.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.p_keys.Controls.Add(this.keys_table);
             this.p_keys.Controls.Add(this.b_add_with_keys);
             this.p_keys.Controls.Add(this.label5);
-            this.p_keys.Controls.Add(this.keys_table);
             this.p_keys.Location = new System.Drawing.Point(730, 205);
             this.p_keys.Name = "p_keys";
             this.p_keys.Size = new System.Drawing.Size(503, 569);
             this.p_keys.TabIndex = 19;
             // 
-            // b_add_with_keys
-            // 
-            this.b_add_with_keys.Location = new System.Drawing.Point(6, 534);
-            this.b_add_with_keys.Name = "b_add_with_keys";
-            this.b_add_with_keys.Size = new System.Drawing.Size(98, 30);
-            this.b_add_with_keys.TabIndex = 5;
-            this.b_add_with_keys.Text = "<< Add";
-            this.b_add_with_keys.UseVisualStyleBackColor = true;
-            this.b_add_with_keys.Click += new System.EventHandler(this.b_add_with_keys_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(241, 8);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 13);
-            this.label5.TabIndex = 15;
-            // 
             // keys_table
             // 
-            this.keys_table.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.keys_table.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.keys_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.keys_table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Key,
@@ -473,6 +455,24 @@ namespace ProtoShark
             this.Description.FillWeight = 70F;
             this.Description.HeaderText = "Description";
             this.Description.Name = "Description";
+            // 
+            // b_add_with_keys
+            // 
+            this.b_add_with_keys.Location = new System.Drawing.Point(6, 534);
+            this.b_add_with_keys.Name = "b_add_with_keys";
+            this.b_add_with_keys.Size = new System.Drawing.Size(98, 30);
+            this.b_add_with_keys.TabIndex = 5;
+            this.b_add_with_keys.Text = "<< Add";
+            this.b_add_with_keys.UseVisualStyleBackColor = true;
+            this.b_add_with_keys.Click += new System.EventHandler(this.b_add_with_keys_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(241, 8);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 13);
+            this.label5.TabIndex = 15;
             // 
             // GUI
             // 
